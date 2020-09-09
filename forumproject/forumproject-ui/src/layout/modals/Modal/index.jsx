@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
+import { LiveAnnouncer } from 'react-aria-live';
 
 import { MODAL_IS_OPEN, MODAL_IS_CLOSED } from 'redux/actions/types';
 import SVGIcon from '../../icons/SVGIcon';
@@ -23,17 +24,19 @@ const Modal = ({ title, children, handleDismiss }) => {
   }, []);
 
   return ReactDOM.createPortal(
-    <ModalBackground onClick={handleDismiss}>
-      <ModalBody onClick={(e) => e.stopPropagation()}>
-        <Header>
-          <CloseButton onClick={handleDismiss}>
-            <SVGIcon name="x_mark" />
-          </CloseButton>
-          <Title>{title}</Title>
-        </Header>
-        <Content>{children}</Content>
-      </ModalBody>
-    </ModalBackground>,
+    <LiveAnnouncer>
+      <ModalBackground onClick={handleDismiss}>
+        <ModalBody onClick={(e) => e.stopPropagation()}>
+          <Header>
+            <CloseButton onClick={handleDismiss}>
+              <SVGIcon name="x_mark" />
+            </CloseButton>
+            <Title>{title}</Title>
+          </Header>
+          <Content>{children}</Content>
+        </ModalBody>
+      </ModalBackground>
+    </LiveAnnouncer>,
     document.querySelector('#modal')
   );
 };

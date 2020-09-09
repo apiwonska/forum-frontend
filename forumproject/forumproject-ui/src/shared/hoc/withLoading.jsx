@@ -1,12 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { LiveMessage } from 'react-aria-live';
 
 import { Spinner } from 'layout';
 
 const withLoading = (Cmp) => {
   const Wrapped = ({ fetching, fetched, ...passThroughProps }) => {
     if (fetching) {
-      return <Spinner />;
+      return (
+        <>
+          <LiveMessage message="Loading" aria-live="polite" />
+          <Spinner />
+        </>
+      );
     }
     if (fetched) {
       return <Cmp {...passThroughProps} />;

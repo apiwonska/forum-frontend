@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { compose } from 'redux';
+import { LiveMessage } from 'react-aria-live';
 
 import PostList from 'shared/EditablePostList';
 import {
@@ -40,34 +41,38 @@ const PageContent = ({
   };
 
   return (
-    <PageWrapper>
-      <PageTitleBlock title="Your Posts" />
+    <>
+      <LiveMessage message="Your Posts Page" aria-live="polite" />
 
-      <ContentWrapper>
-        <PageBreadcrumb />
+      <PageWrapper>
+        <PageTitleBlock title="Your Posts" />
 
-        {renderPagination()}
+        <ContentWrapper>
+          <PageBreadcrumb />
 
-        {posts.length === 0 && (
-          <NoResults picture={<NoPostsPicture />}>
-            You haven&apos;t written any posts yet. Choose a topic and join the
-            discussion!
-          </NoResults>
-        )}
+          {renderPagination()}
 
-        <PostList
-          posts={posts}
-          postHeader={PostHeader}
-          editingPost={editingPost}
-          handleUpdatePost={handleUpdatePost}
-          handleDeletePost={handleDeletePost}
-          handleShowUpdateForm={handleShowUpdateForm}
-          handleHideUpdateForm={handleHideUpdateForm}
-        />
+          {posts.length === 0 && (
+            <NoResults picture={<NoPostsPicture />}>
+              You haven&apos;t written any posts yet. Choose a topic and join
+              the discussion!
+            </NoResults>
+          )}
 
-        {renderPagination()}
-      </ContentWrapper>
-    </PageWrapper>
+          <PostList
+            posts={posts}
+            postHeader={PostHeader}
+            editingPost={editingPost}
+            handleUpdatePost={handleUpdatePost}
+            handleDeletePost={handleDeletePost}
+            handleShowUpdateForm={handleShowUpdateForm}
+            handleHideUpdateForm={handleHideUpdateForm}
+          />
+
+          {renderPagination()}
+        </ContentWrapper>
+      </PageWrapper>
+    </>
   );
 };
 

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Field, Form as FinalForm } from 'react-final-form';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
+import { LiveMessage } from 'react-aria-live';
 
 import {
   Modal,
@@ -44,6 +45,8 @@ class PasswordResetModal extends React.Component {
         <Helmet>
           <title>Password Reset - {CONSTANTS.appName}</title>
         </Helmet>
+        <LiveMessage message="Password Reset Modal" aria-live="polite" />
+
         <Modal title="Password Reset" handleDismiss={() => history.push('/')}>
           <ContentGroup>
             <Paragraph>

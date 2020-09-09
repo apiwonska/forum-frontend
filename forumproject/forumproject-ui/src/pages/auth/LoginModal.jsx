@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Field, Form as FinalForm } from 'react-final-form';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
+import { LiveMessage } from 'react-aria-live';
 
 import {
   Modal,
@@ -40,6 +41,8 @@ class LogInModal extends React.Component {
         <Helmet>
           <title>Login {CONSTANTS.appName}</title>
         </Helmet>
+        <LiveMessage message="Login Modal" aria-live="polite" />
+
         <Modal title="Log In" handleDismiss={() => history.push('/')}>
           <FinalForm onSubmit={this.onSubmit}>
             {({ handleSubmit, submitErrors }) => (

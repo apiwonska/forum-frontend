@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { compose } from 'redux';
+import { LiveMessage } from 'react-aria-live';
 
 import { PageWrapper, ContentWrapper, PageTitleBlock } from 'layout';
 import { withLoading, withHandleErrors } from 'shared/hoc';
@@ -11,29 +12,33 @@ import PageBreadcrumb from '../PageBreadcrumb';
 
 const PageContent = ({ categories }) => {
   return (
-    <PageWrapper>
-      <PageTitleBlock title="Welcome to our Forum!" />
+    <>
+      <LiveMessage message="Home Page" aria-live="polite" />
 
-      <ContentWrapper>
-        <PageBreadcrumb />
+      <PageWrapper>
+        <PageTitleBlock title="Welcome to our Forum!" />
 
-        <ForumInfoWrapper>
-          <PictureWrapper>
-            <WelcomePicture />
-          </PictureWrapper>
-          <ForumInfoText>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vitae
-            adipisci at culpa soluta laborum quo laboriosam.
-            <br />
-            Minima iusto, dolor velit, dolorum iste illum facilis totam illo est
-            repudiandae exercitationem enim. Lorem ipsum dolor sit amet
-            consectetur adipisicing elit.
-          </ForumInfoText>
-        </ForumInfoWrapper>
+        <ContentWrapper>
+          <PageBreadcrumb />
 
-        <CategoryList categories={categories} />
-      </ContentWrapper>
-    </PageWrapper>
+          <ForumInfoWrapper>
+            <PictureWrapper>
+              <WelcomePicture />
+            </PictureWrapper>
+            <ForumInfoText>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vitae
+              adipisci at culpa soluta laborum quo laboriosam.
+              <br />
+              Minima iusto, dolor velit, dolorum iste illum facilis totam illo
+              est repudiandae exercitationem enim. Lorem ipsum dolor sit amet
+              consectetur adipisicing elit.
+            </ForumInfoText>
+          </ForumInfoWrapper>
+
+          <CategoryList categories={categories} />
+        </ContentWrapper>
+      </PageWrapper>
+    </>
   );
 };
 

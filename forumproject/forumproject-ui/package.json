@@ -17,6 +17,7 @@
     "prop-types": "^15.7.2",
     "query-string": "^6.13.1",
     "react": "^16.13.1",
+    "react-aria-live": "^2.0.5",
     "react-dom": "^16.13.1",
     "react-final-form": "^6.5.1",
     "react-helmet": "^6.1.0",

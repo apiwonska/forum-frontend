@@ -2,6 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { compose } from 'redux';
+import { LiveMessage } from 'react-aria-live';
 
 import {
   PageWrapper,
@@ -42,25 +43,32 @@ const PageContent = ({
   const { fetching, fetched, data } = threads;
 
   return (
-    <PageWrapper>
-      <PageTitleBlock title={categoryName} />
+    <>
+      <LiveMessage
+        message={`Category ${categoryName} Page`}
+        aria-live="polite"
+      />
 
-      <ContentWrapper>
-        <PageBreadcrumb categoryName={categoryName} />
+      <PageWrapper>
+        <PageTitleBlock title={categoryName} />
 
-        <LinkWrapper>
-          <LinkButton to={`/categories/${categoryId}/threads/new/`}>
-            Add Thread
-          </LinkButton>
-        </LinkWrapper>
+        <ContentWrapper>
+          <PageBreadcrumb categoryName={categoryName} />
 
-        <ThreadListWrapper>
-          {renderPagination()}
-          <ThreadList fetching={fetching} fetched={fetched} threads={data} />
-          {renderPagination()}
-        </ThreadListWrapper>
-      </ContentWrapper>
-    </PageWrapper>
+          <LinkWrapper>
+            <LinkButton to={`/categories/${categoryId}/threads/new/`}>
+              Add Thread
+            </LinkButton>
+          </LinkWrapper>
+
+          <ThreadListWrapper>
+            {renderPagination()}
+            <ThreadList fetching={fetching} fetched={fetched} threads={data} />
+            {renderPagination()}
+          </ThreadListWrapper>
+        </ContentWrapper>
+      </PageWrapper>
+    </>
   );
 };
 

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import _ from 'lodash';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
+import { LiveMessage } from 'react-aria-live';
 
 import { changePassword as changePassword_ } from 'redux/actions';
 import { PageWrapper, ContentWrapper, PageTitleBlock } from 'layout';
@@ -31,6 +32,7 @@ const PasswordChangePage = ({ auth, changePassword }) => {
       <Helmet>
         <title>Change Password - {CONSTANTS.appName}</title>
       </Helmet>
+      <LiveMessage message="Change Password Page" aria-live="polite" />
 
       <PageWrapper>
         <PageTitleBlock title="Password Change" />

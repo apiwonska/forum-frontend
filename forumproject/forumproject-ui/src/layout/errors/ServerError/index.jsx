@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Helmet } from 'react-helmet';
+import { LiveAnnouncer, LiveMessage } from 'react-aria-live';
 
 import { CONSTANTS } from 'utils';
 import Error from '../Error';
@@ -9,10 +10,11 @@ import Picture from './Picture';
 
 const ServerError = () => {
   return ReactDOM.createPortal(
-    <>
+    <LiveAnnouncer>
       <Helmet>
         <title>Server Error - {CONSTANTS.appName}</title>
       </Helmet>
+      <LiveMessage message="Server Error" aria-live="polite" />
 
       <Wrapper>
         <InnerWrapper>
@@ -23,7 +25,7 @@ const ServerError = () => {
           />
         </InnerWrapper>
       </Wrapper>
-    </>,
+    </LiveAnnouncer>,
     document.querySelector('#error')
   );
 };

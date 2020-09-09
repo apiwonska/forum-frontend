@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
+import { LiveMessage } from 'react-aria-live';
 
 import {
   Modal,
@@ -58,6 +59,10 @@ class PasswordResetConfirmModal extends React.Component {
         <Helmet>
           <title>Password Reset Confirm - {CONSTANTS.appName}</title>
         </Helmet>
+        <LiveMessage
+          message="Password Reset Confirm Modal"
+          aria-live="polite"
+        />
 
         <Modal
           title="Password Reset Confirm"

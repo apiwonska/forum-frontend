@@ -1,6 +1,7 @@
 import React from 'react';
 import { compose } from 'redux';
 import PropTypes from 'prop-types';
+import { LiveMessage } from 'react-aria-live';
 
 import { withHandleErrors, withLoading } from 'shared/hoc';
 import {
@@ -25,32 +26,36 @@ const PageContent = ({
   const initialFormValues = { username, email, description };
 
   return (
-    <PageWrapper>
-      <PageTitleBlock title="Edit Your Profile" />
+    <>
+      <LiveMessage message="Edit Profile Page" aria-live="polite" />
 
-      <ContentWrapper>
-        <PageBreadcrumb authUserId={authUserId} />
+      <PageWrapper>
+        <PageTitleBlock title="Edit Your Profile" />
 
-        <InnerContentWrapper>
-          <AvatarUpload
-            avatarSrc={user.data.avatar}
-            handleFileSelect={handleFileSelect}
-            handleFileUpload={handleFileUpload}
-            uploadErrors={
-              user.uploadErrors.data && user.uploadErrors.data.avatar
-            }
-          />
+        <ContentWrapper>
+          <PageBreadcrumb authUserId={authUserId} />
 
-          <GroupWrapper>
-            <UserDataForm
-              authUserId={authUserId}
-              initialFormValues={initialFormValues}
-              handleUpdateUserData={handleUpdateUserData}
+          <InnerContentWrapper>
+            <AvatarUpload
+              avatarSrc={user.data.avatar}
+              handleFileSelect={handleFileSelect}
+              handleFileUpload={handleFileUpload}
+              uploadErrors={
+                user.uploadErrors.data && user.uploadErrors.data.avatar
+              }
             />
-          </GroupWrapper>
-        </InnerContentWrapper>
-      </ContentWrapper>
-    </PageWrapper>
+
+            <GroupWrapper>
+              <UserDataForm
+                authUserId={authUserId}
+                initialFormValues={initialFormValues}
+                handleUpdateUserData={handleUpdateUserData}
+              />
+            </GroupWrapper>
+          </InnerContentWrapper>
+        </ContentWrapper>
+      </PageWrapper>
+    </>
   );
 };
 

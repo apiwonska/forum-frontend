@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
+import { LiveMessage } from 'react-aria-live';
 
 import { CONSTANTS } from 'utils';
 import Error from '../Error';
@@ -11,6 +12,7 @@ const Error404 = () => {
       <Helmet>
         <title>Error 404 - {CONSTANTS.appName}</title>
       </Helmet>
+      <LiveMessage message="Error 404 Page Not Found" aria-live="polite" />
 
       <Error
         title="Error"

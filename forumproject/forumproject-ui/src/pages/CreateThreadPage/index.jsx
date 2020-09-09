@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Field, Form as FinalForm } from 'react-final-form';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
+import { LiveMessage } from 'react-aria-live';
 
 import {
   PageTitleBlock,
@@ -60,6 +61,7 @@ class CreateThread extends React.Component {
         <Helmet>
           <title>Create Thread - {CONSTANTS.appName}</title>
         </Helmet>
+        <LiveMessage message="Create Thread Page" aria-live="polite" />
 
         <PageWrapper>
           <PageTitleBlock title="CreateThread" />

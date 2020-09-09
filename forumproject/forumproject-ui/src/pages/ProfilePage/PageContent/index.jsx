@@ -2,6 +2,7 @@ import React from 'react';
 import { compose } from 'redux';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { LiveMessage } from 'react-aria-live';
 
 import { withHandleErrors, withLoading } from 'shared/hoc';
 import { PageWrapper, ContentWrapper, PageTitleBlock } from 'layout';
@@ -21,48 +22,54 @@ const PageContent = ({ user, authUserIsProfileOwner }) => {
   const defaultDescription = "This user doesn't have a description yet";
 
   return (
-    <PageWrapper>
-      <PageTitleBlock title="User Profile" />
+    <>
+      <LiveMessage message="Profile Page" aria-live="polite" />
 
-      <ContentWrapper>
-        <PageBreadcrumb />
+      <PageWrapper>
+        <PageTitleBlock title="User Profile" />
 
-        <InnerContentWrapper>
-          <Avatar src={user.avatar} alt="User avatar" />
+        <ContentWrapper>
+          <PageBreadcrumb />
 
-          <DataWrapper>
-            <DataGroup>
-              <Label> Username: </Label>
-              <Data>{user.username}</Data>
-            </DataGroup>
-            {authUserIsProfileOwner && (
+          <InnerContentWrapper>
+            <Avatar src={user.avatar} alt="User avatar" />
+
+            <DataWrapper>
               <DataGroup>
-                <Label> Email: </Label>
-                <Data> {user.email} </Data>
+                <Label> Username: </Label>
+                <Data>{user.username}</Data>
               </DataGroup>
-            )}
-            <DataGroup>
-              <Label> Description: </Label>
-              <Data> {user.description || defaultDescription} </Data>
-            </DataGroup>
-          </DataWrapper>
+              {authUserIsProfileOwner && (
+                <DataGroup>
+                  <Label> Email: </Label>
+                  <Data> {user.email} </Data>
+                </DataGroup>
+              )}
+              <DataGroup>
+                <Label> Description: </Label>
+                <Data> {user.description || defaultDescription} </Data>
+              </DataGroup>
+            </DataWrapper>
 
-          {authUserIsProfileOwner && (
-            <>
-              <Button
-                onClick={() => history.push('/profile/edit')}
-                color="blue"
-              >
-                Edit Profile
-              </Button>
-              <Button onClick={() => history.push('/profile/password-change')}>
-                Change Password
-              </Button>
-            </>
-          )}
-        </InnerContentWrapper>
-      </ContentWrapper>
-    </PageWrapper>
+            {authUserIsProfileOwner && (
+              <>
+                <Button
+                  onClick={() => history.push('/profile/edit')}
+                  color="blue"
+                >
+                  Edit Profile
+                </Button>
+                <Button
+                  onClick={() => history.push('/profile/password-change')}
+                >
+                  Change Password
+                </Button>
+              </>
+            )}
+          </InnerContentWrapper>
+        </ContentWrapper>
+      </PageWrapper>
+    </>
   );
 };
 

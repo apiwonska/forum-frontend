@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { compose } from 'redux';
+import { LiveMessage } from 'react-aria-live';
 
 import PostList from 'shared/EditablePostList';
 import { withHandleErrors, withLoading } from 'shared/hoc';
@@ -46,48 +47,52 @@ const PageContent = ({
   };
 
   return (
-    <PageWrapper>
-      <PageTitleWrapper>
-        <PageTitleText>{thread.title}</PageTitleText>
-      </PageTitleWrapper>
+    <>
+      <LiveMessage message={`Thread ${thread.title} Page`} aria-live="polite" />
 
-      <ContentWrapper>
-        <PageBreadcrumb
-          categoryId={category.id}
-          categoryName={category.name}
-          threadTitle={thread.title}
-        />
+      <PageWrapper>
+        <PageTitleWrapper>
+          <PageTitleText>{thread.title}</PageTitleText>
+        </PageTitleWrapper>
 
-        <ButtonWrapper>
-          <Button type="button" onClick={handleMoveUserToEnd}>
-            Add Post
-          </Button>
-        </ButtonWrapper>
-
-        {renderPagination()}
-
-        {currentPage === 1 && <ThreadSubject thread={thread} />}
-
-        <PostList
-          posts={posts}
-          postHeader={PostHeader}
-          editingPost={editingPost}
-          handleUpdatePost={handleUpdatePost}
-          handleDeletePost={handleDeletePost}
-          handleShowUpdateForm={handleShowUpdateForm}
-          handleHideUpdateForm={handleHideUpdateForm}
-        />
-
-        {currentPage === totalPages && (
-          <CreatePostForm
-            ref={createPostInputRef}
-            onSubmit={handleCreatePost}
+        <ContentWrapper>
+          <PageBreadcrumb
+            categoryId={category.id}
+            categoryName={category.name}
+            threadTitle={thread.title}
           />
-        )}
 
-        {renderPagination()}
-      </ContentWrapper>
-    </PageWrapper>
+          <ButtonWrapper>
+            <Button type="button" onClick={handleMoveUserToEnd}>
+              Add Post
+            </Button>
+          </ButtonWrapper>
+
+          {renderPagination()}
+
+          {currentPage === 1 && <ThreadSubject thread={thread} />}
+
+          <PostList
+            posts={posts}
+            postHeader={PostHeader}
+            editingPost={editingPost}
+            handleUpdatePost={handleUpdatePost}
+            handleDeletePost={handleDeletePost}
+            handleShowUpdateForm={handleShowUpdateForm}
+            handleHideUpdateForm={handleHideUpdateForm}
+          />
+
+          {currentPage === totalPages && (
+            <CreatePostForm
+              ref={createPostInputRef}
+              onSubmit={handleCreatePost}
+            />
+          )}
+
+          {renderPagination()}
+        </ContentWrapper>
+      </PageWrapper>
+    </>
   );
 };
 
