@@ -20,6 +20,14 @@ export const ThreadLink = styled(Link)`
   }
 `;
 
+export const ThreadTitle = styled.h2`
+  margin: 0;
+  font-size: 1.8rem;
+  overflow-wrap: anywhere;
+  word-break: break-all;
+  overflow: hidden;
+`;
+
 export const DateSpan = styled.span`
   font-size: 1.2rem;
   color: ${theme.colors.neutralMidDark};

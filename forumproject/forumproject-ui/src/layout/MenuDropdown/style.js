@@ -5,7 +5,7 @@ import theme from 'layout/theme';
 export const Wrapper = styled.div`
   position: relative;
   display: inline-block;
-  margin-left: auto;
+  margin-left: 1rem;
 `;
 
 export const MoreBtn = styled.button`

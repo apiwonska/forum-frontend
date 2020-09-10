@@ -19,8 +19,34 @@ export const ContentWrapper = styled.div`
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  width: 85%;
+`;
+
+export const PictureWrapper = styled.div`
+  width: 100%;
   max-width: 50rem;
-  width: 90%;
+  flex-grow: 1;
+  margin: 3rem 0;
+`;
+
+const showTitle = keyframes`
+0% {
+  opacity: 0;
+  transform: translateY(-2rem);
+}
+100% {
+  opacity: 1;
+  transform: translateY(0) ;
+}
+`;
+
+export const Title = styled.h1`
+  color: ${theme.colors.white};
+  text-align: center;
+  margin: 2rem 0;
+  opacity: 0;
+
+  animation: ${showTitle} 1 1.5s 1s ease forwards;
 `;
 
 const showButton = keyframes`
@@ -39,7 +65,7 @@ const showButton = keyframes`
 
 export const Button = styled(Button_)`
   text-transform: capitalize;
-  margin: 4rem 0;
+  margin: 3rem 0;
   box-shadow: 0 0.2rem 0.8rem rgba(0, 0, 0, 0.4);
   text-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.5);
   font-weight: 600;

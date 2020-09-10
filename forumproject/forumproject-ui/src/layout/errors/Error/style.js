@@ -1,5 +1,12 @@
 import styled from 'styled-components';
 
+import theme from 'layout/theme';
+
+export const PageWrapper = styled.div`
+  background-color: ${theme.colors.white};
+  flex-grow: 1;
+`;
+
 export const ContentWrapper = styled.div`
   margin: 4rem auto;
   width: 90%;

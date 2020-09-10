@@ -14,6 +14,9 @@ const Ul = styled.ul`
   list-style: none;
   padding-left: 0;
   margin-left: 0;
+  overflow-wrap: anywhere;
+  word-break: break-all;
+  overflow: hidden;
 `;
 
 const Breadcrumb = ({ children }) => {

@@ -8,7 +8,7 @@ export const PostListWrapper = styled.div`
 
 export const PostHeaderWrapper = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   margin-bottom: 1rem;
 `;
 
@@ -23,4 +23,7 @@ export const Content = styled.div`
   font-size: 14px;
   margin-bottom: 10px;
   white-space: pre-line;
+  overflow-wrap: anywhere;
+  word-break: break-all;
+  overflow: hidden;
 `;

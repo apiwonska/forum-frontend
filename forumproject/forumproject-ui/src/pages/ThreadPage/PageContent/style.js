@@ -2,14 +2,14 @@ import styled from 'styled-components';
 
 import { theme, Button as Button_ } from 'layout';
 
-export const PageTitleText = styled.h2`
+export const PageTitleText = styled.h1`
   flex-grow: 1;
   margin: 1.5rem;
   text-transform: capitalize;
   color: ${theme.colors.white};
   text-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.3);
   text-align: center;
-  font-size: 1.9rem;
+  font-size: 2rem;
 `;
 
 export const Button = styled(Button_)`

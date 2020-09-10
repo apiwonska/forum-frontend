@@ -2,14 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { formatTime } from 'utils';
-import { PostHeaderInnerWrapper, ThreadLink, DateSpan } from './style';
+import {
+  PostHeaderInnerWrapper,
+  ThreadLink,
+  ThreadTitle,
+  DateSpan,
+} from './style';
 
 const PostHeader = ({ post }) => (
   <PostHeaderInnerWrapper>
     <ThreadLink
       to={`/categories/${post.thread.category}/threads/${post.thread.id}`}
     >
-      {post.thread.title}
+      <ThreadTitle>Thread: {post.thread.title}</ThreadTitle>
     </ThreadLink>
     <DateSpan>{formatTime.main(post.created)}</DateSpan>
   </PostHeaderInnerWrapper>

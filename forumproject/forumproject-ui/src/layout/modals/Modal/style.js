@@ -61,7 +61,7 @@ export const CloseButton = styled.button`
   }
 `;
 
-export const Title = styled.h2`
+export const Title = styled.h1`
   text-transform: capitalize;
   text-align: center;
   color: ${theme.colors.main};

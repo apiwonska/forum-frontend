@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import PageTitleBlock from '../../PageTitleBlock';
 import {
+  PageWrapper,
   ContentWrapper,
   ErrorMessage,
   ErrorExplanation,
@@ -11,9 +12,8 @@ import {
 
 const Error = ({ title, errorMessage, errorExplanation, picture }) => {
   return (
-    <>
+    <PageWrapper>
       {title.length !== 0 && <PageTitleBlock title={title} />}
-
       <ContentWrapper>
         {errorMessage.length !== 0 && (
           <ErrorMessage>{errorMessage}</ErrorMessage>
@@ -23,7 +23,7 @@ const Error = ({ title, errorMessage, errorExplanation, picture }) => {
         )}
         {picture && <PictureWrapper>{picture}</PictureWrapper>}
       </ContentWrapper>
-    </>
+    </PageWrapper>
   );
 };
 

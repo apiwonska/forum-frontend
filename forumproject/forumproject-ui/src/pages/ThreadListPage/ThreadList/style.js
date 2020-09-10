@@ -28,14 +28,17 @@ export const ThreadLink = styled(Link)`
 
   @media (min-width: 450px) {
     flex-direction: row;
+    align-items: center;
   }
 `;
 
-export const ThreadTitle = styled.h3`
+export const ThreadTitle = styled.h2`
   flex-grow: 1;
   margin: 0;
-  font-size: 1.7rem;
+  font-size: 1.8rem;
   overflow-wrap: anywhere;
+  word-break: break-all;
+  overflow: hidden;
 `;
 
 export const ThreadIcon = styled(SVGIcon)`
@@ -43,6 +46,7 @@ export const ThreadIcon = styled(SVGIcon)`
   margin: 0.5rem 1rem 0.5rem 0;
   color: ${theme.colors.main};
   width: 2rem;
+  height: 2rem;
 
   ${ThreadLink}:hover & {
     color: #275999;

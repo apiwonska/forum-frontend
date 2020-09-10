@@ -33,19 +33,26 @@ export const DateSpan = styled.span`
   color: ${theme.colors.neutralMidDark};
 `;
 
-export const ThreadTitle = styled.h4`
+export const ThreadTitle = styled.h2`
   margin: 1.5rem 0;
+  font-size: 1.6rem;
   font-weight: 600;
+  overflow-wrap: anywhere;
+  word-break: break-all;
+  overflow: hidden;
 `;
 
 export const Content = styled.div`
-  font-size: 14px;
-  margin-bottom: 10px;
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  overflow-wrap: anywhere;
+  word-break: break-all;
+  overflow: hidden;
 `;
 
 export const AvatarThumbnail = styled.img`
-  width: 35px;
-  height: 35px;
+  width: 3.5rem;
+  height: 3.5rem;
   border-radius: 50%;
-  margin: 10 px;
+  margin: 1 rem;
 `;

@@ -2,8 +2,9 @@ import styled from 'styled-components';
 
 import theme from 'layout/theme';
 
-export default styled.h2`
+export default styled.h1`
   flex-grow: 1;
+  font-size: 2.6rem;
   margin: 1.5rem;
   text-transform: capitalize;
   color: ${theme.colors.white};

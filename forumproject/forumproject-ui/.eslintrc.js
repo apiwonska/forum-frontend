@@ -3,7 +3,12 @@ module.exports = {
     browser: true,
     es6: true,
   },
-  extends: ['airbnb', 'prettier', 'prettier/react'],
+  extends: [
+    'airbnb',
+    'prettier',
+    'prettier/react',
+    'plugin:jsx-a11y/recommended',
+  ],
   plugins: ['react', 'jsx-a11y', 'import', 'prettier', 'react-hooks'],
   parserOptions: {
     ecmaVersion: 2018,

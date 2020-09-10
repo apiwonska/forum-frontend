@@ -26,9 +26,10 @@ export const MainContent = styled.div`
   }
 `;
 
-export const CardTitle = styled.h3`
+export const CardTitle = styled.h2`
   position: relative;
   color: ${theme.colors.black};
+  font-size: 2rem;
   text-transform: capitalize;
   text-decoration: none;
   margin-top: 0;

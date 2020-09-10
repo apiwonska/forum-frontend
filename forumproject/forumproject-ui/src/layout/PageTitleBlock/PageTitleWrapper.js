@@ -10,4 +10,7 @@ export default styled.div`
   background-color: ${theme.colors.secondary};
   box-shadow: 0 0.3rem 1rem rgba(0, 0, 0, 0.15);
   margin-bottom: 3rem;
+  overflow-wrap: anywhere;
+  word-break: break-all;
+  overflow: hidden;
 `;
