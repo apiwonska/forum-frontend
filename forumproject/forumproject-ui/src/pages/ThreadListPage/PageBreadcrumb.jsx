@@ -9,7 +9,7 @@ const PageBreadcrumb = ({ categoryName }) => (
       <BreadcrumbIcon name="home" />
       Home Page
     </Anchor>
-    <span>{categoryName}</span>
+    <li>{categoryName}</li>
   </Breadcrumb>
 );
 

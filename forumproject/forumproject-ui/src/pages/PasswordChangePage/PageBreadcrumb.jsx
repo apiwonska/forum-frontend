@@ -11,7 +11,7 @@ const PageBreadcrumb = ({ authUserId }) => {
         Home Page
       </Anchor>
       <Anchor href={`/profile/${authUserId}`}>Your Profile</Anchor>
-      <span>Change Password</span>
+      <li>Change Password</li>
     </Breadcrumb>
   );
 };

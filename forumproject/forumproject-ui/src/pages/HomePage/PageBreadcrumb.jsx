@@ -5,10 +5,10 @@ import { Breadcrumb, BreadcrumbIcon } from 'layout';
 export default () => {
   return (
     <Breadcrumb>
-      <span>
+      <li>
         <BreadcrumbIcon name="home" />
         Home Page
-      </span>
+      </li>
     </Breadcrumb>
   );
 };

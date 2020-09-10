@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import { logOut, fetchCategories, closeSideDrawer } from 'redux/actions';
-import { Nav, NavUl, NavLi, NavUlInner, NavLiInner, NavLink } from './style';
+import { Nav, NavUl, NavLi, NavLiInner, NavLink } from './style';
 
 const SideNavContent = () => {
   const auth = useSelector((state) => !!state.auth.authenticated);
@@ -46,7 +46,7 @@ const SideNavContent = () => {
         </NavLinkWithProps>
       </NavLiInner>
     ));
-    return CategoryLinks;
+    return <NavUl>{CategoryLinks}</NavUl>;
   };
 
   if (auth) {
@@ -54,9 +54,9 @@ const SideNavContent = () => {
       <Nav>
         <NavUl>
           <NavLi>
-            <NavLinkWithProps to="/">All Categories</NavLinkWithProps>
+            <NavLinkWithProps to="/">Home | All Categories</NavLinkWithProps>
+            {categories.fetched && renderCategoryLinks()}
           </NavLi>
-          <NavUlInner>{categories.fetched && renderCategoryLinks()}</NavUlInner>
           <NavLi>
             <NavLinkWithProps to={`/profile/${userId}`}>
               Profile

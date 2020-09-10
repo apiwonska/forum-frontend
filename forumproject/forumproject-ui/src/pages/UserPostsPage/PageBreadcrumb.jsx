@@ -8,6 +8,6 @@ export default () => (
       <BreadcrumbIcon name="home" />
       Home Page
     </Anchor>
-    <span>Your Posts</span>
+    <li>Your Posts</li>
   </Breadcrumb>
 );

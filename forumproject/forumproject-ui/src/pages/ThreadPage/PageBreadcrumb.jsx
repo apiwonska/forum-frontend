@@ -11,7 +11,7 @@ const PageBreadcrumb = ({ categoryId, categoryName, threadTitle }) => {
         Home Page
       </Anchor>
       <Anchor href={`/categories/${categoryId}`}>{categoryName}</Anchor>
-      <span>{threadTitle}</span>
+      <li>{threadTitle}</li>
     </Breadcrumb>
   );
 };

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
 
 import theme from 'layout/theme';
@@ -16,8 +16,6 @@ export const NavUl = styled.ul`
   padding-left: 0;
 `;
 
-export const NavUlInner = styled(NavUl)``;
-
 export const NavLi = styled.li`
   padding-left: 3rem;
   margin: 2rem 0;
@@ -26,19 +24,20 @@ export const NavLi = styled.li`
 
 export const NavLiInner = styled(NavLi)`
   padding-left: 4.5rem;
+  margin-left: -3rem;
 `;
 
-const activeLink = `
-  color:${theme.colors.black}; 
-  font-weight:600;
-  text-shadow: 0 0 .4rem rgba(255,255,255,0.3);
+const activeLink = css`
+  color: ${theme.colors.black};
+  font-weight: 600;
+  text-shadow: 0 0 0.4rem rgba(255, 255, 255, 0.3);
 
   &:after {
     content: '';
     display: block;
     position: absolute;
     left: 0;
-    top: -.5rem;
+    top: -0.5rem;
     width: 1rem;
     height: 3rem;
     background-color: ${theme.colors.black};
