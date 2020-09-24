@@ -1,13 +1,8 @@
 import React from 'react';
-import styled, {
-  createGlobalStyle,
-  ThemeProvider,
-  css,
-} from 'styled-components';
+import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
 import { ThemeProvider as ZenDeskGardenThemeProvider } from '@zendeskgarden/react-theming';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
-import { useSelector } from 'react-redux';
 
 import theme from './theme';
 
@@ -29,10 +24,6 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
-  a, input:focus {
-    outline: none;
-  }
-
   h1 { font-size: 3.2rem}
 
   h2 { font-size: 2.4rem}
@@ -42,15 +33,24 @@ const GlobalStyle = createGlobalStyle`
   h4 { font-size: 1.6rem}
   
   h5 { font-size: 12.8rem}
+  
+  input:focus,
+  textarea:focus {
+    outline: none;
+  }
+
+  a:focus{
+    outline: black 1px dotted;
+  }
+
+  h1:focus, button:focus {
+    outline: black 1px dotted;
+    outline-offset: .4rem;
+  }
 
   button::-moz-focus-inner {
     border: 0;
   }
-`;
-
-const cssWithOpenModal = css`
-  height: 100vh;
-  overflow: hidden;
 `;
 
 const StyledWrapper = styled.div`
@@ -59,16 +59,9 @@ const StyledWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  ${({ modalIsOpen }) => {
-    if (modalIsOpen) return cssWithOpenModal;
-    return null;
-  }}
 `;
 
 const LayoutSetup = ({ children }) => {
-  const modalIsOpen = useSelector((state) => state.modal.isOpen);
-
   return (
     <ThemeProvider theme={theme}>
       <ZenDeskGardenThemeProvider>
@@ -79,7 +72,7 @@ const LayoutSetup = ({ children }) => {
             rel="stylesheet"
           />
         </Helmet>
-        <StyledWrapper modalIsOpen={modalIsOpen}>{children}</StyledWrapper>
+        <StyledWrapper>{children}</StyledWrapper>
       </ZenDeskGardenThemeProvider>
     </ThemeProvider>
   );

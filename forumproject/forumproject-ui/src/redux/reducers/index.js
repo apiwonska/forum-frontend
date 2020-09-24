@@ -9,7 +9,6 @@ import threadReducer from './threadReducer';
 import postsReducer from './postsReducer';
 import userReducer from './userReducer';
 import layoutReducer from './layoutReducer';
-import modalReducer from './modalReducer';
 
 const reducers = combineReducers({
   auth: authReducer,
@@ -21,7 +20,6 @@ const reducers = combineReducers({
   posts: postsReducer,
   user: userReducer,
   layout: layoutReducer,
-  modal: modalReducer,
 });
 
 export default reducers;
