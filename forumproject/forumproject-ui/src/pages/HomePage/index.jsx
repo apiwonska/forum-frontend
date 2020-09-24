@@ -11,6 +11,7 @@ import PageContent from './PageContent';
 class Home extends React.Component {
   componentDidMount() {
     const { categories, fetchCategories } = this.props;
+    document.body.focus();
 
     if (!categories.fetched) {
       fetchCategories();

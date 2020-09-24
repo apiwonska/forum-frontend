@@ -20,6 +20,8 @@ const Profile = (props) => {
   const [authUserIsProfileOwner, setAuthUserIsProfileOwner] = useState(false);
 
   useEffect(() => {
+    document.body.focus();
+
     if (authUser) setAuthUserIsProfileOwner(String(authUser.id) === userId);
 
     if (!correctUserFetched(user, userId)) fetchUser(userId);

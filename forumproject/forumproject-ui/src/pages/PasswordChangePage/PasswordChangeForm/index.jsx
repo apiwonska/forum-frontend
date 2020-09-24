@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { Form as FinalForm, Field } from 'react-final-form';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -12,9 +12,15 @@ import {
 import { ButtonGroupWrapper, Button, FormWrapper } from './style';
 
 const PasswordChangeForm = ({ onSubmit, authUserId }) => {
+  const oldPasswordRef = useRef(null);
   const history = useHistory();
   // a value to ensure form input id uniqueness
   const id = 'pch';
+
+  useEffect(() => {
+    if (oldPasswordRef && oldPasswordRef.current)
+      oldPasswordRef.current.focus();
+  }, []);
 
   return (
     <FinalForm onSubmit={onSubmit}>
@@ -41,6 +47,7 @@ const PasswordChangeForm = ({ onSubmit, authUserId }) => {
                       {...input}
                       id={`old_password-${id}`}
                       type="password"
+                      ref={oldPasswordRef}
                     />
                     {touched && (error || submitError) && (
                       <FormError>{touched && (error || submitError)}</FormError>

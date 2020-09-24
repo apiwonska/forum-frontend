@@ -38,6 +38,8 @@ class ThreadPage extends React.Component {
     let { thread } = this.props;
     const { threadId } = match.params;
 
+    document.body.focus();
+
     if (!thread.fetched || String(thread.data.id) !== threadId) {
       await fetchThread(threadId);
     }

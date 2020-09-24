@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { compose } from 'redux';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { LiveMessage } from 'react-aria-live';
 
 import { withHandleErrors, withLoading } from 'shared/hoc';
-import { PageWrapper, ContentWrapper, PageTitleBlock } from 'layout';
+import { PageWrapper, ContentWrapper, PageTitleBlock, SkipLink } from 'layout';
 import {
   Button,
   Avatar,
@@ -20,13 +20,15 @@ import PageBreadcrumb from '../PageBreadcrumb';
 const PageContent = ({ user, authUserIsProfileOwner }) => {
   const history = useHistory();
   const defaultDescription = "This user doesn't have a description yet";
+  const titleRef = useRef(null);
 
   return (
     <>
       <LiveMessage message="Profile Page" aria-live="polite" />
+      <SkipLink ref={titleRef} />
 
       <PageWrapper>
-        <PageTitleBlock title="User Profile" />
+        <PageTitleBlock title="User Profile" ref={titleRef} />
 
         <ContentWrapper>
           <PageBreadcrumb />

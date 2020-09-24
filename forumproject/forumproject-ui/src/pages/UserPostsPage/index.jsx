@@ -25,6 +25,9 @@ class UserPosts extends React.Component {
   componentDidMount = async () => {
     const { auth, fetchPostsByUser } = this.props;
     const userId = auth.user.id;
+
+    document.body.focus();
+
     await fetchPostsByUser(userId, this.postsPerPage);
     this.setState({ totalPages: this.countPageNumber() });
   };

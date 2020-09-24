@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { compose } from 'redux';
@@ -9,6 +9,7 @@ import {
   ContentWrapper,
   PageTitleBlock,
   Pagination,
+  SkipLink,
 } from 'layout';
 import { withHandleErrors, withLoading } from 'shared/hoc';
 import {
@@ -28,6 +29,9 @@ const PageContent = ({
   threads,
 }) => {
   const { categoryId } = useParams();
+  const titleRef = useRef(null);
+  const { fetching, fetched, data } = threads;
+
   const renderPagination = () => {
     return (
       <PaginationWrapper>
@@ -40,17 +44,16 @@ const PageContent = ({
     );
   };
 
-  const { fetching, fetched, data } = threads;
-
   return (
     <>
       <LiveMessage
         message={`Category ${categoryName} Page`}
         aria-live="polite"
       />
+      <SkipLink ref={titleRef} />
 
       <PageWrapper>
-        <PageTitleBlock title={categoryName} />
+        <PageTitleBlock title={categoryName} ref={titleRef} />
 
         <ContentWrapper>
           <PageBreadcrumb categoryName={categoryName} />

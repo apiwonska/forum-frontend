@@ -29,6 +29,7 @@ class ThreadListPage extends React.Component {
       match,
     } = this.props;
     const { categoryId } = match.params;
+    document.body.focus();
 
     if (!category.fetched || String(category.data.id) !== categoryId) {
       fetchCategory(categoryId);
@@ -44,6 +45,7 @@ class ThreadListPage extends React.Component {
     const { categoryId: currentCategoryId } = match.params;
 
     if (prevCategoryId !== currentCategoryId) {
+      document.querySelector('#skip-link').focus();
       fetchCategory(currentCategoryId);
       await fetchThreadsByCategory(currentCategoryId, this.itemsPerPage);
       // eslint-disable-next-line react/no-did-update-set-state

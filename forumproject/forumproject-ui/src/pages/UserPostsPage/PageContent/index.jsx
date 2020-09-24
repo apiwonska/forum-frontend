@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import { compose } from 'redux';
 import { LiveMessage } from 'react-aria-live';
@@ -11,6 +11,7 @@ import {
   Pagination,
   PaginationWrapper,
   NoResults,
+  SkipLink,
 } from 'layout';
 import { withHandleErrors, withLoading } from 'shared/hoc';
 import { NoPostsPicture } from './style';
@@ -28,6 +29,8 @@ const PageContent = ({
   handleShowUpdateForm,
   handleHideUpdateForm,
 }) => {
+  const titleRef = useRef(null);
+
   const renderPagination = () => {
     return (
       <PaginationWrapper>
@@ -43,9 +46,10 @@ const PageContent = ({
   return (
     <>
       <LiveMessage message="Your Posts Page" aria-live="polite" />
+      <SkipLink ref={titleRef} />
 
       <PageWrapper>
-        <PageTitleBlock title="Your Posts" />
+        <PageTitleBlock title="Your Posts" ref={titleRef} />
 
         <ContentWrapper>
           <PageBreadcrumb />

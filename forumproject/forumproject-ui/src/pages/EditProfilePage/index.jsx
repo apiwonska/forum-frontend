@@ -21,6 +21,7 @@ class EditProfile extends React.Component {
 
   componentDidMount = () => {
     const { authUserId, fetchUser } = this.props;
+    document.body.focus();
     fetchUser(authUserId);
   };
 
