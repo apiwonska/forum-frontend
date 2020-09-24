@@ -2,7 +2,7 @@ import styled, { keyframes } from 'styled-components';
 
 import { theme, Button as Button_ } from 'layout';
 
-export const Container = styled.div`
+export const Container = styled.main`
   width: 100%;
   background-color: ${theme.colors.accessPageBackgroundColor};
   display: flex;

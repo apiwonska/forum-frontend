@@ -28,6 +28,7 @@ export const MainContent = styled.div`
 
 export const CardTitle = styled.h2`
   position: relative;
+  display: inline-block;
   color: ${theme.colors.black};
   font-size: 2rem;
   text-transform: capitalize;

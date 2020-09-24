@@ -19,7 +19,7 @@ class PasswordResetConfirmModal extends React.Component {
     super(props);
     this.state = {
       emailSent: false,
-      passwordChanged: true,
+      passwordChanged: false,
     };
   }
 
@@ -101,7 +101,9 @@ PasswordResetConfirmModal.propTypes = {
   }).isRequired,
   confirmPasswordReset: PropTypes.func.isRequired,
   passwordReset: PropTypes.shape({
-    resetErrors: PropTypes.shape({ data: PropTypes.shape({}) }).isRequired,
+    resetErrors: PropTypes.shape({
+      data: PropTypes.oneOfType([PropTypes.shape({}), PropTypes.string]),
+    }).isRequired,
     resetPasswordConfirmed: PropTypes.bool.isRequired,
   }).isRequired,
 };

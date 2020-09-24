@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { GroupWrapper, FormError } from 'layout';
@@ -16,6 +16,8 @@ const AvatarUpload = ({
   avatarSrc,
   uploadErrors,
 }) => {
+  const [fileInputFocused, setFileInputFocused] = useState(false);
+
   return (
     <>
       <GroupWrapper>
@@ -23,8 +25,16 @@ const AvatarUpload = ({
       </GroupWrapper>
 
       <ButtonGroupWrapper>
-        <FileInputLabel htmlFor="file-upload">Choose Image...</FileInputLabel>
-        <FileInput type="file" id="file-upload" onChange={handleFileSelect} />
+        <FileInputLabel htmlFor="file-upload" focused={fileInputFocused}>
+          Choose Image...
+        </FileInputLabel>
+        <FileInput
+          type="file"
+          id="file-upload"
+          onChange={handleFileSelect}
+          onFocus={() => setFileInputFocused(true)}
+          onBlur={() => setFileInputFocused(false)}
+        />
 
         <UploadButton type="button" onClick={handleFileUpload} color="blue">
           Upload

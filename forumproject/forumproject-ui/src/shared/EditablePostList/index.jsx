@@ -4,7 +4,12 @@ import PropTypes from 'prop-types';
 
 import Dropdown from './Dropdown';
 import UpdatePostForm from './UpdatePostForm';
-import { PostHeaderWrapper, PostWrapper, Content } from './style';
+import {
+  PostHeaderWrapper,
+  PostWrapper,
+  Content,
+  DropdownWrapper,
+} from './style';
 
 const EditablePostList = ({
   posts,
@@ -36,11 +41,13 @@ const EditablePostList = ({
             <PostHeader post={post} />
 
             {userIsPostAuthor && (
-              <Dropdown
-                postId={post.id}
-                onClickEdit={handleShowUpdateForm}
-                onClickDelete={handleDeletePost}
-              />
+              <DropdownWrapper>
+                <Dropdown
+                  postId={post.id}
+                  onClickEdit={handleShowUpdateForm}
+                  onClickDelete={handleDeletePost}
+                />
+              </DropdownWrapper>
             )}
           </PostHeaderWrapper>
 

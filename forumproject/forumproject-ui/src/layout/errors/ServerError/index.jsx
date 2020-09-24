@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { Helmet } from 'react-helmet';
 import { LiveAnnouncer, LiveMessage } from 'react-aria-live';
@@ -9,6 +9,10 @@ import { Wrapper, InnerWrapper } from './style';
 import Picture from './Picture';
 
 const ServerError = () => {
+  useEffect(() => {
+    document.body.focus();
+  }, []);
+
   return ReactDOM.createPortal(
     <LiveAnnouncer>
       <Helmet>
@@ -22,6 +26,7 @@ const ServerError = () => {
             errorMessage="Server Error"
             errorExplanation="We are experiencing problems right now. Please try again later."
             picture={<Picture />}
+            role="alert"
           />
         </InnerWrapper>
       </Wrapper>

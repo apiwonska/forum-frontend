@@ -10,7 +10,7 @@ export default styled.input`
   font-size: 1.6rem;
   color: ${theme.colors.black};
 
-  &[value=''] {
+  &[value='']:not(:focus) {
     border-bottom: 0.2rem solid ${theme.colors.neutralMidLight};
   }
 

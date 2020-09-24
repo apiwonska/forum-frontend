@@ -18,6 +18,10 @@ export default styled(TextareaAutosize)`
     return null;
   }};
 
+  &:focus {
+    border-bottom: 0.2rem solid ${theme.colors.black};
+  }
+
   &::placeholder {
     color: ${theme.colors.neutralDark};
   }

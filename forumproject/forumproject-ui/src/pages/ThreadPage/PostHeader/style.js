@@ -7,7 +7,6 @@ export const PostHeaderInnerWrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin-left: 1.5rem;
-  flex-grow: 1;
 `;
 
 export const UserLink = styled(Link)`

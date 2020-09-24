@@ -15,6 +15,11 @@ const UserDataForm = ({
   const history = useHistory();
   // a value to ensure form input id uniqueness
   const id = 'ep';
+  const handleTextAreaFocus = (e) => {
+    e.target.selectionStart = e.target.textLength;
+    e.target.selectionEnd = e.target.textLength;
+  };
+
   return (
     <FinalForm
       onSubmit={handleUpdateUserData}
@@ -53,6 +58,7 @@ const UserDataForm = ({
                     rows="1"
                     maxLength="500"
                     placeholder="Tell us about yourself"
+                    onFocus={handleTextAreaFocus}
                   />
                   {touched && (error || submitError) && (
                     <FormError>{error || submitError}</FormError>

@@ -27,3 +27,7 @@ export const Content = styled.div`
   word-break: break-all;
   overflow: hidden;
 `;
+
+export const DropdownWrapper = styled.div`
+  margin-left: auto;
+`;

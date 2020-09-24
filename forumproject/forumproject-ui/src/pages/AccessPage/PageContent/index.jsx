@@ -21,11 +21,12 @@ const PageContent = () => {
 
       <Container>
         <ContentWrapper>
-          <PictureWrapper>
+          <PictureWrapper aria-hidden="true">
             <GroupChatPicture width="100%" height="100%" />
           </PictureWrapper>
           <Title>Discuss career and get job advice!</Title>
           <Button
+            aria-hidden="true"
             color="yellow"
             size="XL"
             onClick={() => history.push('/register')}

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { Button as Button_, theme } from 'layout';
 
@@ -30,6 +30,11 @@ export const FileInput = styled.input`
   left: -99999rem;
 `;
 
+const fileInputFocused = css`
+  outline: 0.1rem dotted black;
+  outline-offset: 0.5rem;
+`;
+
 export const FileInputLabel = styled.label`
   height: 3.5rem;
   font-size: 1.6rem;
@@ -57,4 +62,9 @@ export const FileInputLabel = styled.label`
   ${theme.media.minLandscapePhone} {
     flex-grow: 0;
   }
+
+  ${({ focused }) => {
+    if (focused) return fileInputFocused;
+    return null;
+  }}
 `;

@@ -28,6 +28,10 @@ export const LinkButton = styled(Link)`
     box-shadow: 0 0 0.6rem rgba(0, 0, 0, 0.35);
   }
 
+  &:focus {
+    outline-offset: 0.5rem;
+  }
+
   ${theme.media.minLandscapePhone} {
     min-width: 20rem;
     width: auto;
