@@ -1,8 +1,12 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
 
 import theme from '../../theme';
 import SVGIcon from '../../icons/SVGIcon';
+
+const showSideDrawerSection = css`
+  transform: translateX(0);
+`;
 
 export const Section = styled.section`
   position: fixed;
@@ -16,7 +20,7 @@ export const Section = styled.section`
   z-index: 100;
 
   ${({ show }) => {
-    if (show) return 'transform: translateX(0);';
+    if (show) return showSideDrawerSection;
     return '';
   }}
 `;
@@ -58,7 +62,7 @@ export const NavToggleButton = styled.button`
   color: ${theme.colors.white};
   background-color: ${theme.colors.main};
   border: 0;
-  margin: 0 -0.5rem 0 0;
+  margin: 0 1rem 0 0;
   padding: 0.7rem;
   width: 3rem;
   height: 3rem;
@@ -67,14 +71,16 @@ export const NavToggleButton = styled.button`
   cursor: pointer;
   transition: 0.5s;
 
-  :hover {
+  &:hover {
     color: ${theme.colors.black};
     background-color: ${theme.colors.white};
   }
-`;
 
-export const BrandDiv = styled.div`
-  height: 60px;
+  &:focus {
+    color: ${theme.colors.black};
+    background-color: ${theme.colors.white};
+    outline-offset: none;
+  }
 `;
 
 export const ProjectName = styled.span`
@@ -83,22 +89,25 @@ export const ProjectName = styled.span`
   font-family: ${theme.fonts.special};
   font-size: 2.4rem;
   font-weight: 700;
-  color: ${theme.colors.white};
   transition: 0.3s;
-
-  &:hover {
-    color: ${theme.colors.black};
-  }
 `;
 
 export const NavLink = styled(Link)`
   display: flex;
   align-items: center;
-  padding: 0 20px;
-  height: 100%;
-  color: ${theme.colors.black};
+  padding: 0 1rem;
+  color: ${theme.colors.white};
   text-decoration: none;
   font-size: 1.6rem;
+
+  &:hover {
+    color: ${theme.colors.black};
+  }
+
+  &:focus {
+    color: ${theme.colors.black};
+    outline-offset: none;
+  }
 `;
 
 export const BubbleIcon = styled(SVGIcon)`

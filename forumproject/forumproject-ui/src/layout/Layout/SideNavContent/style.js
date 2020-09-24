@@ -55,5 +55,10 @@ export const NavLink = styled(Link)`
     text-shadow: 0 0 0.4rem rgba(255, 255, 255, 0.3);
   }
 
+  &:focus {
+    color: ${theme.colors.black};
+    text-shadow: 0 0 0.4rem rgba(255, 255, 255, 0.3);
+  }
+
   ${({ active }) => (active ? activeLink : '')}
 `;

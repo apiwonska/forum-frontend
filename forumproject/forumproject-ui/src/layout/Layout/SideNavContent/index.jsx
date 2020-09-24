@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { logOut, fetchCategories, closeSideDrawer } from 'redux/actions';
 import { Nav, NavUl, NavLi, NavLiInner, NavLink } from './style';
 
-const SideNavContent = () => {
+const SideNavContent = ({ tabIndex }) => {
   const auth = useSelector((state) => !!state.auth.authenticated);
   const userId = useSelector((state) => state.auth.user.id);
   const categories = useSelector((state) => state.categories);
@@ -30,6 +30,7 @@ const SideNavContent = () => {
         onClick={boundCloseSideDrawer}
         active={path === to ? 'active' : ''}
         {...props}
+        tabIndex={tabIndex}
       />
     );
   };
@@ -51,7 +52,7 @@ const SideNavContent = () => {
 
   if (auth) {
     return (
-      <Nav>
+      <Nav aria-label="Main navigation">
         <NavUl>
           <NavLi>
             <NavLinkWithProps to="/">Home | All Categories</NavLinkWithProps>
@@ -92,6 +93,14 @@ const SideNavContent = () => {
       </NavUl>
     </nav>
   );
+};
+
+SideNavContent.propTypes = {
+  tabIndex: PropTypes.string,
+};
+
+SideNavContent.defaultProps = {
+  tabIndex: '0',
 };
 
 export default SideNavContent;
