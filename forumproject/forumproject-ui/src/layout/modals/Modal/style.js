@@ -55,7 +55,8 @@ export const CloseButton = styled.button`
   border-radius: 50%;
   transition: 0.4s;
 
-  &:hover {
+  &:hover,
+  &:focus {
     background-color: ${theme.colors.main};
     color: ${theme.colors.white};
   }

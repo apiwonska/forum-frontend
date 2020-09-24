@@ -1,10 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
-import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { LiveAnnouncer } from 'react-aria-live';
+import { FocusOn } from 'react-focus-on';
 
-import { MODAL_IS_OPEN, MODAL_IS_CLOSED } from 'redux/actions/types';
 import SVGIcon from '../../icons/SVGIcon';
 import {
   ModalBackground,
@@ -15,31 +14,41 @@ import {
   Content,
 } from './style';
 
-const Modal = ({ title, children, handleDismiss }) => {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch({ type: MODAL_IS_OPEN });
-    return () => dispatch({ type: MODAL_IS_CLOSED });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+class Modal extends React.Component {
+  render() {
+    const { handleDismiss, title, children } = this.props;
 
-  return ReactDOM.createPortal(
-    <LiveAnnouncer>
-      <ModalBackground onClick={handleDismiss}>
-        <ModalBody onClick={(e) => e.stopPropagation()}>
-          <Header>
-            <CloseButton onClick={handleDismiss}>
-              <SVGIcon name="x_mark" />
-            </CloseButton>
-            <Title>{title}</Title>
-          </Header>
-          <Content>{children}</Content>
-        </ModalBody>
-      </ModalBackground>
-    </LiveAnnouncer>,
-    document.querySelector('#modal')
-  );
-};
+    return ReactDOM.createPortal(
+      <LiveAnnouncer>
+        <FocusOn
+          onClickOutside={handleDismiss}
+          onEscapeKey={handleDismiss}
+          returnFocus
+        >
+          <ModalBackground onClick={handleDismiss}>
+            <ModalBody
+              role="dialog"
+              aria-labelledby="modal-title"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <Header>
+                <CloseButton
+                  onClick={handleDismiss}
+                  aria-label="Close the dialog"
+                >
+                  <SVGIcon name="x_mark" />
+                </CloseButton>
+                <Title id="modal-title">{title}</Title>
+              </Header>
+              <Content>{children}</Content>
+            </ModalBody>
+          </ModalBackground>
+        </FocusOn>
+      </LiveAnnouncer>,
+      document.querySelector('#modal')
+    );
+  }
+}
 
 Modal.propTypes = {
   title: PropTypes.string.isRequired,

@@ -11,7 +11,7 @@ export default styled.input`
   color: ${theme.colors.black};
   height: 2.7rem;
 
-  &[value=''] {
+  &[value='']:not(:focus) {
     border-bottom: 0.2rem solid ${theme.colors.neutralLight};
   }
 

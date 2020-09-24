@@ -1,6 +1,16 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import theme from 'layout/theme';
+
+const disabledBtnStyle = css`
+  &,
+  &:hover {
+    background-color: #ffd589;
+    font-size: 2rem;
+    transform: scale(1, 1);
+    box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.25);
+  }
+`;
 
 export default styled.button`
   display: block;
@@ -25,12 +35,10 @@ export default styled.button`
     box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.4);
   }
 
-  &:disabled,
-  &:disabled:hover {
-    background-color: #ffd589;
-    color: ${theme.colors.white};
-    transform: translateY(0);
-  }
+  ${({ styleDisabled }) => {
+    if (styleDisabled) return disabledBtnStyle;
+    return null;
+  }}
 
   @media (min-width: 500px) {
     width: auto;
