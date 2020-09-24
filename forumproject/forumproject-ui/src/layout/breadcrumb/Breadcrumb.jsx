@@ -2,27 +2,22 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-import theme from 'layout/theme';
-
-const Ul = styled.ul`
+const Ol = styled.ol`
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  margin: 2rem;
-  font-size: 1.4rem;
-  color: ${theme.colors.neutralMidDark};
-  list-style: none;
+  margin: 1rem 2rem 1rem 0;
   padding-left: 0;
-  margin-left: 0;
+  font-size: 1.4rem;
+  list-style: none;
   overflow-wrap: anywhere;
   word-break: break-all;
-  overflow: hidden;
 `;
 
 const Breadcrumb = ({ children }) => {
   return (
-    <nav>
-      <Ul>{children}</Ul>
+    <nav aria-label="Breadcrumb">
+      <Ol>{children}</Ol>
     </nav>
   );
 };

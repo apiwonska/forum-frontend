@@ -1,9 +1,11 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import { Anchor, Breadcrumb, BreadcrumbIcon } from 'layout';
+import { Anchor, AnchorCurrent, Breadcrumb, BreadcrumbIcon } from 'layout';
 
 const PageBreadcrumb = ({ authUserId }) => {
+  const location = useLocation();
   return (
     <Breadcrumb>
       <Anchor href="/">
@@ -11,7 +13,7 @@ const PageBreadcrumb = ({ authUserId }) => {
         Home Page
       </Anchor>
       <Anchor href={`/profile/${authUserId}`}>Your Profile</Anchor>
-      <li>Edit Profile</li>
+      <AnchorCurrent href={location.pathname}>Edit Profile</AnchorCurrent>
     </Breadcrumb>
   );
 };

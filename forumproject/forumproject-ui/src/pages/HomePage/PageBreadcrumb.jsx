@@ -1,14 +1,17 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 
-import { Breadcrumb, BreadcrumbIcon } from 'layout';
+import { Breadcrumb, BreadcrumbIcon, AnchorCurrent } from 'layout';
 
 export default () => {
+  const location = useLocation();
+
   return (
     <Breadcrumb>
-      <li>
+      <AnchorCurrent href={location.pathname}>
         <BreadcrumbIcon name="home" />
         Home Page
-      </li>
+      </AnchorCurrent>
     </Breadcrumb>
   );
 };
