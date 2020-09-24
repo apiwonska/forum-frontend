@@ -8,32 +8,32 @@ import SVGIcon from '../../icons/SVGIcon';
 
 const navbarHeight = '6rem';
 
-const AuthNavSection = styled.section`
+const AuthHeader = styled.header`
   height: ${navbarHeight};
   width: 100%;
   background-color: ${theme.colors.white};
   box-shadow: 0 0.3rem 1rem rgba(0, 0, 0, 0.1);
 `;
 
-const UnauthNavSection = styled(AuthNavSection)`
+const UnauthHeader = styled(AuthHeader)`
   background-color: ${theme.colors.accessPageBackgroundColor};
   box-shadow: none;
 `;
 
-export const NavSection = ({ auth, children }) => {
+export const Header = ({ auth, children, ...passThroughProps }) => {
   return auth ? (
-    <AuthNavSection>{children}</AuthNavSection>
+    <AuthHeader {...passThroughProps}>{children}</AuthHeader>
   ) : (
-    <UnauthNavSection>{children}</UnauthNavSection>
+    <UnauthHeader {...passThroughProps}>{children}</UnauthHeader>
   );
 };
 
-NavSection.propTypes = {
+Header.propTypes = {
   auth: PropTypes.bool,
   children: PropTypes.node.isRequired,
 };
 
-NavSection.defaultProps = { auth: false };
+Header.defaultProps = { auth: false };
 
 export const NavContainerDiv = styled.div`
   margin: 0 2rem;
@@ -140,6 +140,10 @@ const AuthNavLink = styled(Link)`
     color: ${theme.colors.black};
     text-shadow: none;
     cursor: pointer;
+  }
+
+  &:focus {
+    outline-offset: -0.6rem;
   }
 `;
 

@@ -1,13 +1,13 @@
 import React from 'react';
 
 import SideNavContent from '../SideNavContent';
-import Section from './style';
+import Wrapper from './style';
 
 const SideNav = () => {
   return (
-    <Section>
+    <Wrapper>
       <SideNavContent />
-    </Section>
+    </Wrapper>
   );
 };
 

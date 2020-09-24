@@ -6,7 +6,7 @@ export const Wrapper = styled.div`
   width: 100%;
 `;
 
-export const MainContentWrapper = styled.div`
+export const MainContentWrapper = styled.main`
   width: 100%;
   background-color: #efefef;
   display: flex;

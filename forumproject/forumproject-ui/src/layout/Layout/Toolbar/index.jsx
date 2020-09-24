@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { openSideDrawer } from 'redux/actions';
 import SVGIcon from '../../icons/SVGIcon';
 import {
-  NavSection,
+  Header,
   NavContainerDiv,
   BrandDiv,
   ProjectName,
@@ -19,36 +19,21 @@ import {
 
 const Toolbar = () => {
   const auth = useSelector((state) => !!state.auth.authenticated);
+  const sideDrawerIsOpen = useSelector(
+    (state) => state.layout.sideDrawerIsOpen
+  );
   const dispatch = useDispatch();
   const boundOpenSideDrawer = () => dispatch(openSideDrawer());
 
-  const renderMenu = () => {
-    if (!auth) {
-      return (
-        <>
-          <NavLi>
-            <NavLink to="/auth" auth={auth}>
-              <UserIcon name="user" />
-              Log In
-            </NavLink>
-          </NavLi>
-          <NavLi>
-            <NavLink to="/register" auth={auth}>
-              <UserIcon name="add_user" />
-              Register
-            </NavLink>
-          </NavLi>
-        </>
-      );
-    }
-    return null;
-  };
-
   return (
-    <NavSection auth={auth}>
+    <Header auth={auth} role="banner" aria-hidden={sideDrawerIsOpen}>
       <NavContainerDiv>
-        <NavToggleButton auth={auth} onClick={boundOpenSideDrawer}>
-          <SVGIcon name="menu" />
+        <NavToggleButton
+          auth={auth}
+          onClick={boundOpenSideDrawer}
+          aria-label="Show main navigation"
+        >
+          <SVGIcon name="menu" aria-hidden="true" />
         </NavToggleButton>
         <BrandDiv>
           <NavLink to="/" auth={auth}>
@@ -58,11 +43,27 @@ const Toolbar = () => {
             </ProjectName>
           </NavLink>
         </BrandDiv>
-        <Nav>
-          <NavUl auth={auth}>{renderMenu()}</NavUl>
-        </Nav>
+
+        {!auth && (
+          <Nav aria-label="Header navigation">
+            <NavUl>
+              <NavLi>
+                <NavLink to="/auth" auth={auth}>
+                  <UserIcon name="user" />
+                  Log In
+                </NavLink>
+              </NavLi>
+              <NavLi>
+                <NavLink to="/register" auth={auth}>
+                  <UserIcon name="add_user" />
+                  Register
+                </NavLink>
+              </NavLi>
+            </NavUl>
+          </Nav>
+        )}
       </NavContainerDiv>
-    </NavSection>
+    </Header>
   );
 };
 
