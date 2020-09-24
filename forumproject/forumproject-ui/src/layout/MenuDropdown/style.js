@@ -34,16 +34,33 @@ export const DropdownWrapper = styled.div`
   z-index: 1;
 `;
 
-export const Option = styled.div`
+export const DropdownUl = styled.ul`
+  padding: 0;
+  margin: 0;
+  list-style: none;
+`;
+
+export const DropdownLi = styled.li``;
+
+export const DropdownBtn = styled.button`
+  width: 100%;
   display: flex;
   align-items: center;
   font-size: 1.4rem;
   padding: 0.8rem 1.5rem;
   cursor: pointer;
+  border: none;
+  background-color: transparent;
 
   &:hover {
     background-color: rgba(0, 0, 0, 0.05);
     color: #000;
+  }
+
+  &:focus {
+    background-color: rgba(0, 0, 0, 0.05);
+    color: #000;
+    outline-offset: 0;
   }
 `;
 

@@ -1,38 +1,43 @@
 import React from 'react';
-import onClickOutside from 'react-onclickoutside';
 import PropTypes from 'prop-types';
 
 import SVGIcon from '../icons/SVGIcon';
-import { DropdownWrapper, Option, IconSpan } from './style';
+import {
+  DropdownWrapper,
+  DropdownLi,
+  IconSpan,
+  DropdownUl,
+  DropdownBtn,
+} from './style';
 
 function DropdownList({ dropdownOptions, closeDropdown }) {
-  DropdownList.handleClickOutside = closeDropdown;
-
-  const renderOptionList = () => {
+  const renderOptions = () => {
     return dropdownOptions.map((option) => {
       return (
-        <Option
-          key={option.label}
-          onClick={() => {
-            option.onClick();
-            closeDropdown();
-          }}
-        >
-          <IconSpan>
-            <SVGIcon name={option.icon} />
-          </IconSpan>
-          {option.label}
-        </Option>
+        <DropdownLi key={option.label} role="none">
+          <DropdownBtn
+            role="menuitem"
+            onClick={() => {
+              option.onClick();
+              closeDropdown();
+            }}
+          >
+            <IconSpan aria-hidden="true">
+              <SVGIcon name={option.icon} />
+            </IconSpan>
+            {option.label}
+          </DropdownBtn>
+        </DropdownLi>
       );
     });
   };
 
-  return <DropdownWrapper>{renderOptionList()}</DropdownWrapper>;
+  return (
+    <DropdownWrapper>
+      <DropdownUl role="menubar">{renderOptions()}</DropdownUl>
+    </DropdownWrapper>
+  );
 }
-
-const clickOutsideConfig = {
-  handleClickOutside: () => DropdownList.handleClickOutside,
-};
 
 DropdownList.propTypes = {
   dropdownOptions: PropTypes.arrayOf(
@@ -44,4 +49,4 @@ DropdownList.propTypes = {
   closeDropdown: PropTypes.func.isRequired,
 };
 
-export default onClickOutside(DropdownList, clickOutsideConfig);
+export default DropdownList;
