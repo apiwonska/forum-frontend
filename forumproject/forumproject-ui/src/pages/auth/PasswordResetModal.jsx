@@ -54,34 +54,70 @@ class PasswordResetModal extends React.Component {
             </Paragraph>
           </ContentGroup>
           <FinalForm onSubmit={this.onSubmit}>
-            {({ handleSubmit }) => (
-              <form onSubmit={handleSubmit}>
-                <FormWrapper>
-                  <Field name="email" validate={emailValidator}>
-                    {({
-                      input,
-                      meta: { touched, error, submitError, dirty },
-                    }) => (
-                      <InputGroup>
-                        <Label htmlFor={`email-${formId}`} dirty={dirty}>
-                          Email:
-                        </Label>
-                        <Input {...input} id={`email-${formId}`} type="email" />
-                        {touched && (error || submitError) && (
-                          <FormError>{error || submitError}</FormError>
-                        )}
-                      </InputGroup>
-                    )}
-                  </Field>
-                  <Button type="submit">Reset Password</Button>
-                </FormWrapper>
-              </form>
-            )}
+            {({
+              handleSubmit,
+              hasValidationErrors,
+              hasSubmitErrors,
+              dirtySinceLastSubmit,
+            }) => {
+              const disabled =
+                hasValidationErrors ||
+                (hasSubmitErrors && !dirtySinceLastSubmit);
+
+              return (
+                <form onSubmit={handleSubmit}>
+                  <FormWrapper>
+                    <Field name="email" validate={emailValidator}>
+                      {({
+                        input,
+                        meta: { touched, error, submitError, dirty },
+                      }) => (
+                        <InputGroup>
+                          <Label htmlFor={`email-${formId}`} dirty={dirty}>
+                            Email:
+                          </Label>
+                          <Input
+                            {...input}
+                            id={`email-${formId}`}
+                            type="email"
+                            aria-describedby={`email-error-${formId}`}
+                          />
+                          {touched && (error || submitError) && (
+                            <>
+                              <FormError id={`email-error-${formId}`}>
+                                {error || submitError[0]}
+                              </FormError>
+                              <LiveMessage
+                                message={error || submitError[0]}
+                                aria-live="polite"
+                              />
+                            </>
+                          )}
+                        </InputGroup>
+                      )}
+                    </Field>
+                    <Button
+                      type="submit"
+                      styleDisabled={disabled}
+                      aria-disabled={disabled}
+                    >
+                      Reset Password
+                    </Button>
+                  </FormWrapper>
+                </form>
+              );
+            }}
           </FinalForm>
           <ContentGroup>
             <Paragraph>
               If you already have a token click this{' '}
-              <Link to="/password-reset/confirm">link</Link>.
+              <Link
+                to="/password-reset/confirm"
+                aria-label="Password reset confirm"
+              >
+                link
+              </Link>
+              .
             </Paragraph>
           </ContentGroup>
         </Modal>
@@ -94,7 +130,9 @@ PasswordResetModal.propTypes = {
   history: PropTypes.shape({ push: PropTypes.func.isRequired }).isRequired,
   resetPassword: PropTypes.func.isRequired,
   passwordReset: PropTypes.shape({
-    emailErrors: PropTypes.shape({ data: PropTypes.shape({}) }).isRequired,
+    emailErrors: PropTypes.shape({
+      data: PropTypes.oneOfType([PropTypes.shape({}), PropTypes.string]),
+    }).isRequired,
     emailSent: PropTypes.bool.isRequired,
   }).isRequired,
 };

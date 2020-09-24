@@ -1,6 +1,7 @@
 import React from 'react';
 import { Field, Form as FinalForm } from 'react-final-form';
 import PropTypes from 'prop-types';
+import { LiveMessage } from 'react-aria-live';
 
 import {
   ModalButton as Button,
@@ -22,32 +23,60 @@ const ChangePasswordForm = ({ onSubmit }) => {
 
   return (
     <FinalForm onSubmit={onSubmit}>
-      {({ handleSubmit, submitErrors, form, submitSucceeded, values }) => {
+      {({
+        handleSubmit,
+        submitErrors,
+        form,
+        submitSucceeded,
+        values,
+        hasValidationErrors,
+        hasSubmitErrors,
+        dirtySinceLastSubmit,
+      }) => {
         if (submitSucceeded) {
           form.reset();
           Object.keys(values).forEach((field) => form.resetFieldState(field));
         }
+
+        const disabled =
+          hasValidationErrors || (hasSubmitErrors && !dirtySinceLastSubmit);
+
         return (
-          <form onSubmit={handleSubmit} id={formId}>
+          <form onSubmit={handleSubmit} id={formId} autoComplete="off">
             <FormWrapper>
               {submitErrors && submitErrors.status && (
                 <FormGroup>
-                  <FormError>The token is not valid</FormError>
+                  <FormError role="alert">The token is not valid</FormError>
                 </FormGroup>
               )}
+
               <Field name="token" validate={required}>
                 {({ input, meta: { touched, error, submitError, dirty } }) => (
                   <InputGroup>
                     <Label htmlFor={`token-${formId}`} dirty={dirty}>
                       Token:
                     </Label>
-                    <Input {...input} id={`token-${formId}`} type="text" />
+                    <Input
+                      {...input}
+                      id={`token-${formId}`}
+                      type="text"
+                      aria-describedby={`token-error-${formId}`}
+                    />
                     {touched && (error || submitError) && (
-                      <FormError>{error || submitError}</FormError>
+                      <>
+                        <FormError id={`token-error-${formId}`}>
+                          {error || submitError[0]}
+                        </FormError>
+                        <LiveMessage
+                          message={error || submitError[0]}
+                          aria-live="polite"
+                        />
+                      </>
                     )}
                   </InputGroup>
                 )}
               </Field>
+
               <Field name="password" validate={passwordValidator}>
                 {({ input, meta: { touched, error, submitError, dirty } }) => (
                   <InputGroup>
@@ -58,13 +87,24 @@ const ChangePasswordForm = ({ onSubmit }) => {
                       {...input}
                       id={`password-${formId}`}
                       type="password"
+                      autoComplete="new-password"
+                      aria-describedby={`password-error-${formId}`}
                     />
                     {touched && (error || submitError) && (
-                      <FormError>{error || submitError}</FormError>
+                      <>
+                        <FormError id={`password-error-${formId}`}>
+                          {error || submitError[0]}
+                        </FormError>
+                        <LiveMessage
+                          message={error || submitError[0]}
+                          aria-live="polite"
+                        />
+                      </>
                     )}
                   </InputGroup>
                 )}
               </Field>
+
               <Field
                 name="password2"
                 validate={password2Validator(values.password)}
@@ -78,12 +118,26 @@ const ChangePasswordForm = ({ onSubmit }) => {
                       {...input}
                       id={`password2-${formId}`}
                       type="password"
+                      aria-describedby={`password2-error-${formId}`}
                     />
-                    {touched && error && <FormError>{error}</FormError>}
+                    {touched && error && (
+                      <>
+                        <FormError id={`password2-error-${formId}`}>
+                          {error}
+                        </FormError>
+                        <LiveMessage message={error} aria-live="polite" />
+                      </>
+                    )}
                   </InputGroup>
                 )}
               </Field>
-              <Button type="submit">Change Password</Button>
+              <Button
+                type="submit"
+                styleDisabled={disabled}
+                aria-disabled={disabled}
+              >
+                Change Password
+              </Button>
             </FormWrapper>
           </form>
         );

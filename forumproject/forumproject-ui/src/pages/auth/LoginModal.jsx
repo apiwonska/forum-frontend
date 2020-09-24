@@ -45,68 +45,112 @@ class LogInModal extends React.Component {
 
         <Modal title="Log In" handleDismiss={() => history.push('/')}>
           <FinalForm onSubmit={this.onSubmit}>
-            {({ handleSubmit, submitErrors }) => (
-              <form onSubmit={handleSubmit} id={formId}>
-                <FormWrapper>
-                  {submitErrors && submitErrors.non_field_errors && (
-                    <FormGroup>
-                      <FormError>{submitErrors.non_field_errors}</FormError>
-                    </FormGroup>
-                  )}
-                  <Field name="username" validate={required}>
-                    {({
-                      input,
-                      meta: { touched, error, submitError, dirty },
-                    }) => (
-                      <InputGroup>
-                        <Label htmlFor={`username-${formId}`} dirty={dirty}>
-                          Username:
-                        </Label>
-                        <Input
-                          {...input}
-                          id={`username-${formId}`}
-                          type="text"
-                        />
-                        {touched && (error || submitError) && (
-                          <FormError>{error || submitError}</FormError>
-                        )}
-                      </InputGroup>
+            {({
+              handleSubmit,
+              submitErrors,
+              hasValidationErrors,
+              hasSubmitErrors,
+              dirtySinceLastSubmit,
+            }) => {
+              const disabled =
+                hasValidationErrors ||
+                (hasSubmitErrors && !dirtySinceLastSubmit);
+
+              return (
+                <form onSubmit={handleSubmit} id={formId}>
+                  <FormWrapper>
+                    {submitErrors && submitErrors.non_field_errors && (
+                      <FormGroup>
+                        <FormError role="alert">
+                          {submitErrors.non_field_errors}
+                        </FormError>
+                      </FormGroup>
                     )}
-                  </Field>
-                  <Field name="password" validate={required}>
-                    {({
-                      input,
-                      meta: { touched, error, submitError, dirty },
-                    }) => (
-                      <InputGroup>
-                        <Label htmlFor={`password-${formId}`} dirty={dirty}>
-                          Password:
-                        </Label>
-                        <Input
-                          {...input}
-                          id={`password-${formId}`}
-                          type="password"
-                        />
-                        {touched && (error || submitError) && (
-                          <FormError>{error || submitError}</FormError>
-                        )}
-                      </InputGroup>
-                    )}
-                  </Field>
-                  <Button type="submit">Log In </Button>
-                </FormWrapper>
-              </form>
-            )}
+
+                    <Field name="username" validate={required}>
+                      {({
+                        input,
+                        meta: { touched, error, submitError, dirty },
+                      }) => (
+                        <InputGroup>
+                          <Label htmlFor={`username-${formId}`} dirty={dirty}>
+                            Username:
+                          </Label>
+                          <Input
+                            {...input}
+                            id={`username-${formId}`}
+                            type="text"
+                            aria-describedby={`username-error-${formId}`}
+                          />
+                          {touched && (error || submitError) && (
+                            <>
+                              <FormError id={`username-error-${formId}`}>
+                                {error || submitError[0]}
+                              </FormError>
+                              <LiveMessage
+                                message={error || submitError[0]}
+                                aria-live="polite"
+                              />
+                            </>
+                          )}
+                        </InputGroup>
+                      )}
+                    </Field>
+
+                    <Field name="password" validate={required}>
+                      {({
+                        input,
+                        meta: { touched, error, submitError, dirty },
+                      }) => (
+                        <InputGroup>
+                          <Label htmlFor={`password-${formId}`} dirty={dirty}>
+                            Password:
+                          </Label>
+                          <Input
+                            {...input}
+                            id={`password-${formId}`}
+                            type="password"
+                            aria-describedby={`password-error-${formId}`}
+                          />
+                          {touched && (error || submitError) && (
+                            <>
+                              <FormError id={`password-error-${formId}`}>
+                                {error || submitError[0]}
+                              </FormError>
+                              <LiveMessage
+                                message={error || submitError[0]}
+                                aria-live="polite"
+                              />
+                            </>
+                          )}
+                        </InputGroup>
+                      )}
+                    </Field>
+                    <Button
+                      type="submit"
+                      styleDisabled={disabled}
+                      aria-disabled={disabled}
+                    >
+                      Log In{' '}
+                    </Button>
+                  </FormWrapper>
+                </form>
+              );
+            }}
           </FinalForm>
           <ContentGroup>
             <Paragraph>
               If you don&apos;t have an account&nbsp;
-              <Link to="/register">register here</Link>
+              <Link to="/register" aria-label="Registration">
+                register here
+              </Link>
             </Paragraph>
             <Paragraph>
               Did you forget your login or password? Click&nbsp;
-              <Link to="/password-reset">this</Link>&nbsp;to restore your
-              credentials
+              <Link to="/password-reset" aria-label="Password reset">
+                this
+              </Link>
+              &nbsp;to restore your credentials
             </Paragraph>
           </ContentGroup>
         </Modal>
@@ -118,7 +162,9 @@ class LogInModal extends React.Component {
 LogInModal.propTypes = {
   logIn: PropTypes.func.isRequired,
   auth: PropTypes.shape({
-    errors: PropTypes.shape({ data: PropTypes.shape({}) }).isRequired,
+    errors: PropTypes.shape({
+      data: PropTypes.oneOfType([PropTypes.shape({}), PropTypes.string]),
+    }).isRequired,
   }).isRequired,
   history: PropTypes.shape({ push: PropTypes.func.isRequired }).isRequired,
 };
