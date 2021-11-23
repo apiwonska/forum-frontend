@@ -39,7 +39,6 @@ import PageTitleText from './PageTitleBlock/PageTitleText';
 import Pagination from './pagination/Pagination';
 import PaginationWrapper from './pagination/PaginationWrapper';
 
-import SkipLink from './SkipLink';
 import Spinner from './Spinner';
 import InfoText from './text/InfoText';
 import TextLink from './text/TextLink';
@@ -80,7 +79,6 @@ export {
   PageWrapper,
   Pagination,
   PaginationWrapper,
-  SkipLink,
   Spinner,
   Input,
   Label,

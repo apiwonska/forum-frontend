@@ -1,9 +1,9 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { compose } from 'redux';
 import { LiveMessage } from 'react-aria-live';
 
-import { PageWrapper, ContentWrapper, PageTitleBlock, SkipLink } from 'layout';
+import { PageWrapper, ContentWrapper, PageTitleBlock } from 'layout';
 import { withLoading, withHandleErrors } from 'shared/hoc';
 import { ForumInfoWrapper, ForumInfoText, PictureWrapper } from './style';
 import WelcomePicture from '../WelcomePicture';
@@ -11,15 +11,12 @@ import CategoryList from '../CategoryList';
 import PageBreadcrumb from '../PageBreadcrumb';
 
 const PageContent = ({ categories }) => {
-  const titleRef = useRef(null);
-
   return (
     <>
       <LiveMessage message="Home Page" aria-live="polite" />
-      <SkipLink ref={titleRef} />
 
       <PageWrapper>
-        <PageTitleBlock title="Welcome to our Forum!" ref={titleRef} />
+        <PageTitleBlock title="Welcome to our Forum!" />
         <ContentWrapper>
           <PageBreadcrumb />
 

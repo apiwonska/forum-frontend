@@ -7,12 +7,19 @@ import {
   showSideNavbar as showSideNavbar_,
   hideSideNavbar as hideSideNavbar_,
 } from 'redux/actions';
+import { FocusContext } from 'context/FocusContext';
 import LayoutSetup from '../LayoutSetup';
 import theme from '../theme';
 import AuthLayout from './AuthLayout';
 import UnauthLayout from './UnauthLayout';
+import LayoutWrapper from './style';
 
 class Layout extends React.Component {
+  constructor(props) {
+    super(props);
+    this.layoutWrapperRef = React.createRef();
+  }
+
   componentDidMount() {
     this.updateSideNavIsRendered();
     window.addEventListener('resize', this.handleResetDrawerState);
@@ -51,15 +58,30 @@ class Layout extends React.Component {
     } else if (sideNavIsRendered) hideSideNavbar();
   };
 
+  focusOnLayoutWrapper() {
+    if (this.layoutWrapperRef && this.layoutWrapperRef.current)
+      this.layoutWrapperRef.current.focus();
+  }
+
   render() {
     const { auth, children } = this.props;
     return (
       <LayoutSetup>
-        {auth ? (
-          <AuthLayout>{children}</AuthLayout>
-        ) : (
-          <UnauthLayout>{children}</UnauthLayout>
-        )}
+        <FocusContext.Provider
+          value={{ focusOnLayoutWrapper: this.focusOnLayoutWrapper.bind(this) }}
+        >
+          <LayoutWrapper
+            id="layout-wrapper"
+            tabIndex="-1"
+            ref={this.layoutWrapperRef}
+          >
+            {auth ? (
+              <AuthLayout>{children}</AuthLayout>
+            ) : (
+              <UnauthLayout>{children}</UnauthLayout>
+            )}
+          </LayoutWrapper>
+        </FocusContext.Provider>
       </LayoutSetup>
     );
   }

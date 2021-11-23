@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
+import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import { ThemeProvider as ZenDeskGardenThemeProvider } from '@zendeskgarden/react-theming';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
@@ -53,14 +53,6 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const StyledWrapper = styled.div`
-  min-height: 100vh;
-  min-width: ${theme.pageMinWidth};
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
 const LayoutSetup = ({ children }) => {
   return (
     <ThemeProvider theme={theme}>
@@ -72,7 +64,7 @@ const LayoutSetup = ({ children }) => {
             rel="stylesheet"
           />
         </Helmet>
-        <StyledWrapper>{children}</StyledWrapper>
+        <>{children}</>
       </ZenDeskGardenThemeProvider>
     </ThemeProvider>
   );

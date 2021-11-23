@@ -8,6 +8,7 @@ import {
   fetchCategory as fetchCategory_,
   fetchThreadsByCategory as fetchThreadsByCategory_,
 } from 'redux/actions';
+import { FocusContext } from 'context/FocusContext';
 import { CONSTANTS } from 'utils';
 import PageContent from './PageContent';
 
@@ -29,7 +30,9 @@ class ThreadListPage extends React.Component {
       match,
     } = this.props;
     const { categoryId } = match.params;
-    document.body.focus();
+    const { focusOnLayoutWrapper } = this.context;
+
+    focusOnLayoutWrapper();
 
     if (!category.fetched || String(category.data.id) !== categoryId) {
       fetchCategory(categoryId);
@@ -43,9 +46,11 @@ class ThreadListPage extends React.Component {
     const { fetchThreadsByCategory, fetchCategory, match } = this.props;
     const { categoryId: prevCategoryId } = prevProps.match.params;
     const { categoryId: currentCategoryId } = match.params;
+    const { focusOnLayoutWrapper } = this.context;
 
     if (prevCategoryId !== currentCategoryId) {
-      document.querySelector('#skip-link').focus();
+      focusOnLayoutWrapper();
+
       fetchCategory(currentCategoryId);
       await fetchThreadsByCategory(currentCategoryId, this.itemsPerPage);
       // eslint-disable-next-line react/no-did-update-set-state
@@ -109,6 +114,8 @@ class ThreadListPage extends React.Component {
     );
   }
 }
+
+ThreadListPage.contextType = FocusContext;
 
 ThreadListPage.propTypes = {
   match: PropTypes.shape({

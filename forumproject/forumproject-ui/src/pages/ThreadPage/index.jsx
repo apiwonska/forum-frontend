@@ -13,6 +13,7 @@ import {
   deletePost as deletePost_,
 } from 'redux/actions';
 import { CONSTANTS } from 'utils';
+import { FocusContext } from 'context/FocusContext';
 import PageContent from './PageContent';
 
 class ThreadPage extends React.Component {
@@ -37,8 +38,9 @@ class ThreadPage extends React.Component {
     } = this.props;
     let { thread } = this.props;
     const { threadId } = match.params;
+    const { focusOnLayoutWrapper } = this.context;
 
-    document.body.focus();
+    focusOnLayoutWrapper();
 
     if (!thread.fetched || String(thread.data.id) !== threadId) {
       await fetchThread(threadId);
@@ -186,6 +188,8 @@ class ThreadPage extends React.Component {
     );
   }
 }
+
+ThreadPage.contextType = FocusContext;
 
 ThreadPage.propTypes = {
   match: PropTypes.shape({

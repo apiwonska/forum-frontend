@@ -5,13 +5,16 @@ import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 
 import { fetchCategories as fetchCategories_ } from 'redux/actions';
+import { FocusContext } from 'context/FocusContext';
 import { CONSTANTS } from 'utils';
 import PageContent from './PageContent';
 
 class Home extends React.Component {
   componentDidMount() {
     const { categories, fetchCategories } = this.props;
-    document.body.focus();
+    const { focusOnLayoutWrapper } = this.context;
+
+    focusOnLayoutWrapper();
 
     if (!categories.fetched) {
       fetchCategories();
@@ -22,6 +25,7 @@ class Home extends React.Component {
     const {
       categories: { fetching, fetched, errors, data },
     } = this.props;
+
     return (
       <>
         <Helmet>
@@ -38,6 +42,8 @@ class Home extends React.Component {
     );
   }
 }
+
+Home.contextType = FocusContext;
 
 Home.propTypes = {
   categories: PropTypes.shape({

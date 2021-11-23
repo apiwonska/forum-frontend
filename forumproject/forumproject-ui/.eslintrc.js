@@ -19,7 +19,7 @@ module.exports = {
       'warn',
       {
         trailingComma: 'es5',
-        singleQuote: true,
+         singleQuote: true,
         printWidth: 80,
       },
     ],

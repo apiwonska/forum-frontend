@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { compose } from 'redux';
 import PropTypes from 'prop-types';
 import { LiveMessage } from 'react-aria-live';
@@ -9,7 +9,6 @@ import {
   ContentWrapper,
   GroupWrapper,
   PageTitleBlock,
-  SkipLink,
 } from 'layout';
 import { InnerContentWrapper } from './style';
 import PageBreadcrumb from '../PageBreadcrumb';
@@ -25,15 +24,13 @@ const PageContent = ({
 }) => {
   const { username, email, description } = user.data;
   const initialFormValues = { username, email, description };
-  const titleRef = useRef(null);
 
   return (
     <>
       <LiveMessage message="Edit Profile Page" aria-live="polite" />
-      <SkipLink ref={titleRef} />
 
       <PageWrapper>
-        <PageTitleBlock title="Edit Your Profile" ref={titleRef} />
+        <PageTitleBlock title="Edit Your Profile" />
 
         <ContentWrapper>
           <PageBreadcrumb authUserId={authUserId} />

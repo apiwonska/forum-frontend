@@ -9,6 +9,7 @@ import {
   deletePost as deletePost_,
 } from 'redux/actions';
 import { CONSTANTS } from 'utils';
+import { FocusContext } from 'context/FocusContext';
 import PageContent from './PageContent';
 
 class UserPosts extends React.Component {
@@ -25,8 +26,9 @@ class UserPosts extends React.Component {
   componentDidMount = async () => {
     const { auth, fetchPostsByUser } = this.props;
     const userId = auth.user.id;
+    const { focusOnLayoutWrapper } = this.context;
 
-    document.body.focus();
+    focusOnLayoutWrapper();
 
     await fetchPostsByUser(userId, this.postsPerPage);
     this.setState({ totalPages: this.countPageNumber() });
@@ -115,6 +117,8 @@ class UserPosts extends React.Component {
     );
   }
 }
+
+UserPosts.contextType = FocusContext;
 
 UserPosts.propTypes = {
   auth: PropTypes.shape({

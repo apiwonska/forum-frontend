@@ -1,7 +1,7 @@
 import React from 'react';
 
 import styled from 'styled-components';
-import theme from './theme';
+import theme from '../theme';
 
 const SkipLinkButton = styled.button`
   position: fixed;
@@ -17,6 +17,7 @@ const SkipLinkButton = styled.button`
   outline-width: 0;
   border-radius: 0 0 0.8rem 0.8rem;
   transition: 0.4s;
+  z-index: 10;
 
   &:focus {
     top: 0;
@@ -34,7 +35,7 @@ const SkipLink = React.forwardRef((props, ref) => {
 
   return (
     // eslint-disable-next-line jsx-a11y/tabindex-no-positive
-    <SkipLinkButton id="skip-link" tabIndex="1" onClick={handleClick}>
+    <SkipLinkButton id="skip-link" tabIndex="0" onClick={handleClick}>
       Skip to main content
     </SkipLinkButton>
   );

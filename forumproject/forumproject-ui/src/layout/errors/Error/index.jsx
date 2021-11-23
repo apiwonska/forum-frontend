@@ -12,14 +12,16 @@ import {
 
 const Error = ({ title, errorMessage, errorExplanation, picture }) => {
   return (
-    <PageWrapper>
-      {title.length !== 0 && <PageTitleBlock title={title} />}
+    <PageWrapper role="alert">
+      {title.length !== 0 && <PageTitleBlock title={title} id="error-title" />}
       <ContentWrapper>
         {errorMessage.length !== 0 && (
-          <ErrorMessage>{errorMessage}</ErrorMessage>
+          <ErrorMessage id="error-message">{errorMessage}</ErrorMessage>
         )}
         {ErrorExplanation.length !== 0 && (
-          <ErrorExplanation>{errorExplanation}</ErrorExplanation>
+          <ErrorExplanation id="error-explanation">
+            {errorExplanation}
+          </ErrorExplanation>
         )}
         {picture && <PictureWrapper>{picture}</PictureWrapper>}
       </ContentWrapper>

@@ -11,4 +11,8 @@ export const MainContentWrapper = styled.main`
   background-color: #efefef;
   display: flex;
   flex-direction: column;
+
+  &:focus {
+    outline: 1px dotted black;
+  }
 `;

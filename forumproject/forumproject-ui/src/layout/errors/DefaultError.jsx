@@ -1,6 +1,5 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import { LiveMessage } from 'react-aria-live';
 
 import { CONSTANTS } from 'utils';
 import Error from './Error';
@@ -11,7 +10,6 @@ const DefaultError = () => {
       <Helmet>
         <title>Error - {CONSTANTS.appName}</title>
       </Helmet>
-      <LiveMessage message="Error" aria-live="polite" />
 
       <Error
         title="Error"

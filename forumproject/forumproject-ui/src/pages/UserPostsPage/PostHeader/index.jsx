@@ -11,9 +11,7 @@ import {
 
 const PostHeader = ({ post }) => (
   <PostHeaderInnerWrapper>
-    <ThreadLink
-      to={`/categories/${post.thread.category}/threads/${post.thread.id}`}
-    >
+    <ThreadLink to={`/threads/${post.thread.id}`}>
       <ThreadTitle>Thread: {post.thread.title}</ThreadTitle>
     </ThreadLink>
     <DateSpan>{formatTime.main(post.created)}</DateSpan>

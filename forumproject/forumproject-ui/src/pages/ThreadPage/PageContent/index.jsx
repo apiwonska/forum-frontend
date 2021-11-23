@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { compose } from 'redux';
 import { LiveMessage } from 'react-aria-live';
@@ -11,7 +11,6 @@ import {
   PageTitleWrapper,
   Pagination,
   PaginationWrapper,
-  SkipLink,
 } from 'layout';
 import { Button, PageTitleText, ButtonWrapper } from './style';
 import CreatePostForm from '../CreatePostForm';
@@ -35,7 +34,6 @@ const PageContent = ({
   createPostInputRef,
   handleCreatePost,
 }) => {
-  const titleRef = useRef(null);
   const renderPagination = () => {
     return (
       <PaginationWrapper>
@@ -51,13 +49,10 @@ const PageContent = ({
   return (
     <>
       <LiveMessage message={`Thread ${thread.title} Page`} aria-live="polite" />
-      <SkipLink ref={titleRef} />
 
       <PageWrapper>
         <PageTitleWrapper>
-          <PageTitleText ref={titleRef} tabIndex="-1">
-            {thread.title}
-          </PageTitleText>
+          <PageTitleText>{thread.title}</PageTitleText>
         </PageTitleWrapper>
 
         <ContentWrapper>

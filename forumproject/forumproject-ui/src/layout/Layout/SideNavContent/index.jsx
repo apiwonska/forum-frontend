@@ -24,7 +24,7 @@ const SideNavContent = ({ tabIndex }) => {
 
   const NavLinkWithProps = (props) => {
     const { to } = props;
-    const path = location.pathname.replace(/\/threads\/.*/, '');
+    const path = location.pathname;
     return (
       <NavLink
         onClick={boundCloseSideDrawer}

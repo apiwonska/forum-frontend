@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -6,6 +6,7 @@ import { Helmet } from 'react-helmet';
 
 import { fetchUser as fetchUser_ } from 'redux/actions';
 import { CONSTANTS } from 'utils';
+import { FocusContext } from 'context/FocusContext';
 import PageContent from './PageContent';
 
 const correctUserFetched = (user, userId) => {
@@ -18,13 +19,12 @@ const Profile = (props) => {
   const { userId } = useParams();
   const { user, authUser, fetchUser } = props;
   const [authUserIsProfileOwner, setAuthUserIsProfileOwner] = useState(false);
+  const { focusOnLayoutWrapper } = useContext(FocusContext);
 
   useEffect(() => {
-    document.body.focus();
-
     if (authUser) setAuthUserIsProfileOwner(String(authUser.id) === userId);
-
     if (!correctUserFetched(user, userId)) fetchUser(userId);
+    focusOnLayoutWrapper();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId]);
 

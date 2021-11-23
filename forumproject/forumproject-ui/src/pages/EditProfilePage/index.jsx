@@ -8,6 +8,7 @@ import {
   updateUser as updateUser_,
   uploadAvatar as uploadAvatar_,
 } from 'redux/actions';
+import { FocusContext } from 'context/FocusContext';
 import { CONSTANTS } from 'utils';
 import PageContent from './PageContent';
 
@@ -21,7 +22,9 @@ class EditProfile extends React.Component {
 
   componentDidMount = () => {
     const { authUserId, fetchUser } = this.props;
-    document.body.focus();
+    const { focusOnLayoutWrapper } = this.context;
+
+    focusOnLayoutWrapper();
     fetchUser(authUserId);
   };
 
@@ -80,6 +83,8 @@ class EditProfile extends React.Component {
     );
   }
 }
+
+EditProfile.contextType = FocusContext;
 
 EditProfile.propTypes = {
   history: PropTypes.shape({ push: PropTypes.func.isRequired }).isRequired,
