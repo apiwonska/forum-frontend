@@ -1,0 +1,25 @@
+Django==3.0.3
+# needed by Django (3 items):
+asgiref==3.2.3
+pytz==2019.3
+sqlparse==0.3.0
+# end
+django-appconf==1.0.3
+django-cleanup==4.0.0
+django-cors-headers==3.2.1
+django-environ==0.4.5
+django-filter==2.2.0
+django-imagekit==4.0.2
+# needed by django-imagekit and django-appconf
+six==1.14.0
+django-rest-passwordreset==1.1.0
+djangorestframework==3.11.0
+lazy-object-proxy==1.4.3
+# Imaging Library
+Pillow==7.0.0
+pilkit==2.0
+pkg-resources==0.0.0
+psycopg2-binary==2.8.4
+regex==2021.11.10
+# library for common path and pattern functionality
+pathtools==0.1.2
