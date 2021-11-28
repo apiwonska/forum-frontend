@@ -18,7 +18,6 @@ lazy-object-proxy==1.4.3
 # Imaging Library
 Pillow==7.0.0
 pilkit==2.0
-pkg-resources==0.0.0
 psycopg2-binary==2.8.4
 regex==2021.11.10
 # library for common path and pattern functionality
