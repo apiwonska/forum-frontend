@@ -1,8 +1,8 @@
 from django.urls import reverse
 from rest_framework import status, test
+from rest_framework.authtoken.models import Token
 
 from users.models import CustomUser
-
 
 class RegistrationTestCase(test.APITestCase):
 
@@ -19,9 +19,11 @@ class RegistrationTestCase(test.APITestCase):
             'password2': 'p@ssword123'
             }
         response = self.client.post(self.url, data, format='json')
+        user = CustomUser.objects.get(username='testUser')
+        token = Token.objects.get(user=user)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(CustomUser.objects.filter(username=data['username']).count(), 1)
-        self.assertEqual(response.data, {'username': 'testUser', 'email': 'test@registration.com'})
+        self.assertEqual(response.data, {'token': token.key, 'user': {'id': user.id, 'username': 'testUser'}})
 
     def test_registration_with_invalid_username(self):
         """

@@ -24,7 +24,7 @@ class AuthenticationTestCase(test.APITestCase):
         }
         response = self.client.post(self.url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.data, {'token': self.token.key})
+        self.assertEqual(response.data, {'token': self.token.key, 'user': {'id': self.user.id, 'username': 'testUser'}})
     
     def test_authentication_with_wrong_password(self):
         """
