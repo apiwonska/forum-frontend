@@ -15,6 +15,7 @@ const AvatarUpload = ({
   handleFileUpload,
   avatarSrc,
   uploadErrors,
+  selectedFile,
 }) => {
   const [fileInputFocused, setFileInputFocused] = useState(false);
 
@@ -36,7 +37,12 @@ const AvatarUpload = ({
           onBlur={() => setFileInputFocused(false)}
         />
 
-        <UploadButton type="button" onClick={handleFileUpload} color="blue">
+        <UploadButton
+          type="button"
+          onClick={handleFileUpload}
+          color="blue"
+          disabled={!selectedFile}
+        >
           Upload
         </UploadButton>
       </ButtonGroupWrapper>
@@ -51,10 +57,12 @@ AvatarUpload.propTypes = {
   avatarSrc: PropTypes.string.isRequired,
   handleFileSelect: PropTypes.func.isRequired,
   handleFileUpload: PropTypes.func.isRequired,
+  selectedFile: PropTypes.instanceOf(File),
 };
 
 AvatarUpload.defaultProps = {
   uploadErrors: null,
+  selectedFile: null,
 };
 
 export default AvatarUpload;

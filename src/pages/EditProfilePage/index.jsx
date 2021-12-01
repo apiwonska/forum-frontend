@@ -62,6 +62,7 @@ class EditProfile extends React.Component {
       user: { fetching, fetched, fetchingErrors },
       authUserId,
     } = this.props;
+    const { selectedFile } = this.state;
 
     return (
       <>
@@ -75,6 +76,7 @@ class EditProfile extends React.Component {
           errors={fetchingErrors}
           user={user}
           authUserId={authUserId}
+          selectedFile={selectedFile}
           handleFileSelect={this.handleFileSelect}
           handleFileUpload={this.handleFileUpload}
           handleUpdateUserData={this.handleUpdateUserData}

@@ -18,6 +18,7 @@ import UserDataForm from '../UserDataForm';
 const PageContent = ({
   authUserId,
   user,
+  selectedFile,
   handleFileSelect,
   handleFileUpload,
   handleUpdateUserData,
@@ -38,6 +39,7 @@ const PageContent = ({
           <InnerContentWrapper>
             <AvatarUpload
               avatarSrc={user.data.avatar}
+              selectedFile={selectedFile}
               handleFileSelect={handleFileSelect}
               handleFileUpload={handleFileUpload}
               uploadErrors={
@@ -75,9 +77,14 @@ PageContent.propTypes = {
       avatar: PropTypes.string.isRequired,
     }).isRequired,
   }).isRequired,
+  selectedFile: PropTypes.instanceOf(File),
   handleFileSelect: PropTypes.func.isRequired,
   handleFileUpload: PropTypes.func.isRequired,
   handleUpdateUserData: PropTypes.func.isRequired,
+};
+
+PageContent.defaultProps = {
+  selectedFile: null,
 };
 
 export default compose(withHandleErrors, withLoading)(PageContent);

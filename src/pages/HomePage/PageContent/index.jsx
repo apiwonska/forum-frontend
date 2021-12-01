@@ -25,12 +25,10 @@ const PageContent = ({ categories }) => {
               <WelcomePicture />
             </PictureWrapper>
             <ForumInfoText>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vitae
-              adipisci at culpa soluta laborum quo laboriosam.
-              <br />
-              Minima iusto, dolor velit, dolorum iste illum facilis totam illo
-              est repudiandae exercitationem enim. Lorem ipsum dolor sit amet
-              consectetur adipisicing elit.
+              Hi! My name is Anna. Welcome to my Forum App. This project was
+              created to train new programming skills. It is not intended to be
+              used as a real forum. Anyway, if you would like to leave a post
+              here, you are welcome! Enjoy!
             </ForumInfoText>
           </ForumInfoWrapper>
 
