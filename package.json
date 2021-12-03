@@ -2,6 +2,7 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:8000",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
@@ -11,7 +12,6 @@
     "axios": "^0.19.2",
     "final-form": "^4.20.1",
     "history": "^4.10.1",
-    "http-proxy-middleware": "^1.0.5",
     "lodash": "^4.17.20",
     "moment": "^2.27.0",
     "prop-types": "^15.7.2",
@@ -35,6 +35,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "postbuild": "mkdir -p templates && cp -u build/index.html templates",
+    "build:frontend": "npm run build && npm run postbuild",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint --ext js,jsx ./src",
