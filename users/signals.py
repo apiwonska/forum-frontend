@@ -31,12 +31,3 @@ def change_auth_token(sender, instance=None, created=False, **kwargs):
             if hasattr(user, 'auth_token'):
                 user.auth_token.delete()
             token, created = Token.objects.get_or_create(user=user)
-
-@receiver(pre_save, sender=CustomUser)
-def add_default_picture(sender, instance, **kwargs):
-    """
-    Add default avatar picture if avatar field is blank.
-    """
-    user = instance
-    if user.avatar == '':
-        user.avatar = 'users/blank-profile-picture.jpeg'
