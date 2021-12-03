@@ -6,8 +6,9 @@ For every user and authentication token is automatically generated on user creat
 
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-from imagekit.models import ImageSpecField, ProcessedImageField
+from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFill
+
 
 class CustomUser(AbstractUser):
     """
@@ -19,18 +20,12 @@ class CustomUser(AbstractUser):
     status = models.CharField(max_length=50, null=True, blank=True)
     description = models.TextField(max_length=1000, null=True, blank=True)
     avatar = ProcessedImageField(
-        upload_to='users/',
+        upload_to="users/",
         processors=[ResizeToFill(200, 200)],
-        format='JPEG',
-        options={'quality': 60},
-        blank=True
-        )
-    avatar_thumbnail = ImageSpecField(
-        source='avatar',
-        processors=[ResizeToFill(50, 50)],
-        format='JPEG',
-        options={'quality': 60}
-        )
+        format="JPEG",
+        options={"quality": 60},
+        blank=True,
+    )
 
     def __str__(self):
         return self.username

@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { GroupWrapper, FormError } from 'layout';
+import { GroupWrapper, FormError, UserAvatar } from 'layout';
 import {
   UploadButton,
   FileInput,
   FileInputLabel,
   ButtonGroupWrapper,
-  Avatar,
 } from './style';
 
 const AvatarUpload = ({
@@ -22,7 +21,7 @@ const AvatarUpload = ({
   return (
     <>
       <GroupWrapper>
-        <Avatar src={avatarSrc} alt="User avatar" />
+        <UserAvatar src={avatarSrc} alt="User avatar" type="profile" />
       </GroupWrapper>
 
       <ButtonGroupWrapper>

@@ -20,9 +20,6 @@ export const DateSpan = styled.span`
   color: ${theme.colors.neutralMidDark};
 `;
 
-export const AvatarThumbnail = styled.img`
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
+export const AvatarThumbnailWrapper = styled.div`
   margin: 10 px;
 `;

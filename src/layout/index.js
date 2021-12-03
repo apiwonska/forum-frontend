@@ -48,6 +48,8 @@ import PageWrapper from './wrappers/PageWrapper';
 import ContentWrapper from './wrappers/ContentWraper';
 import GroupWrapper from './wrappers/GroupWrapper';
 
+import UserAvatar from './UserAvatar';
+
 export {
   Anchor,
   AnchorCurrent,
@@ -87,5 +89,6 @@ export {
   FormGroup,
   FormError,
   SVGIcon,
+  UserAvatar,
   theme,
 };

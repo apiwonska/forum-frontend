@@ -14,14 +14,6 @@ export const InnerContentWrapper = styled.div`
   }
 `;
 
-export const Avatar = styled.img`
-  display: block;
-  width: 20rem;
-  border-radius: 50%;
-  margin: 0 auto;
-  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.15);
-`;
-
 export const DataWrapper = styled.div`
   margin: 3rem 0;
 `;

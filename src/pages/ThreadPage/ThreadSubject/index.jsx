@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { formatTime } from 'utils';
+import { UserAvatar } from 'layout';
 import {
   ThreadWrapper,
   PostHeader,
@@ -10,17 +11,22 @@ import {
   UserLink,
   ThreadTitle,
   Content,
-  AvatarThumbnail,
+  AvatarThumbnailWrapper,
 } from './style';
 
+// TODO: use ImageKit.io
 const ThreadSubject = ({ thread }) => {
   return (
     <ThreadWrapper>
       <PostHeader>
-        <AvatarThumbnail
-          src={thread.user.avatar_thumbnail}
-          alt="Avatar thumbnail"
-        />
+        <AvatarThumbnailWrapper>
+          <UserAvatar
+            src={thread.user.avatar}
+            alt="Avatar thumbnail"
+            type="thumbnail"
+          />
+        </AvatarThumbnailWrapper>
+
         <PostHeaderInnerWrapper>
           <UserLink to={`/profile/${thread.user.id}`}>
             {thread.user.username}
@@ -41,7 +47,7 @@ ThreadSubject.propTypes = {
     user: PropTypes.shape({
       id: PropTypes.number.isRequired,
       username: PropTypes.string.isRequired,
-      avatar_thumbnail: PropTypes.string.isRequired,
+      avatar: PropTypes.string.isRequired,
     }).isRequired,
     created: PropTypes.string.isRequired,
   }).isRequired,

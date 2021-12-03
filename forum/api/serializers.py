@@ -3,16 +3,12 @@ from rest_framework import serializers
 from forum.models import Category, Thread, Post
 from users.models import CustomUser
 
-class UserSerializer(serializers.ModelSerializer):
-    # This declaration is necessary for displaying avatar_thumbnail. Don't delete!
-    avatar_thumbnail = serializers.ImageField(read_only=True)
 
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ['id', 'username', 'avatar_thumbnail']
-        extra_kwargs = {
-            'username': {'read_only': True}
-        }
+        fields = ['id', 'username', 'avatar']
+        extra_kwargs = {'username': {'read_only': True}, 'avatar': {'read_only': True}}
 
 
 class CategorySerializer(serializers.ModelSerializer):

@@ -38,19 +38,19 @@ export const CardTitle = styled.h2`
 
   &:before {
     position: absolute;
-    bottom: -0.8rem;
+    bottom: -1rem;
     left: 0;
     content: '';
-    width: 10rem;
-    max-width: 80%;
-    height: 0.3rem;
+    width: 5rem;
+    max-width: 100%;
+    height: 0.4rem;
     background-color: ${theme.colors.secondary};
-    transition: 0.4s;
+    transition: 0.6s ease-out;
   }
 
   &:hover {
     &:before {
-      width: 25rem;
+      width: 100%;
     }
   }
 `;

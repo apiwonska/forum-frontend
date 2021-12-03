@@ -51,6 +51,13 @@ const GlobalStyle = createGlobalStyle`
   button::-moz-focus-inner {
     border: 0;
   }
+  /* Alt text style */
+  img {
+    font-size: 1.6rem;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+  }
 `;
 
 const LayoutSetup = ({ children }) => {

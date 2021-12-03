@@ -5,10 +5,14 @@ import PropTypes from 'prop-types';
 import { LiveMessage } from 'react-aria-live';
 
 import { withHandleErrors, withLoading } from 'shared/hoc';
-import { PageWrapper, ContentWrapper, PageTitleBlock } from 'layout';
+import {
+  PageWrapper,
+  ContentWrapper,
+  PageTitleBlock,
+  UserAvatar,
+} from 'layout';
 import {
   Button,
-  Avatar,
   DataGroup,
   Label,
   Data,
@@ -32,7 +36,7 @@ const PageContent = ({ user, authUserIsProfileOwner }) => {
           <PageBreadcrumb />
 
           <InnerContentWrapper>
-            <Avatar src={user.avatar} alt="User avatar" />
+            <UserAvatar src={user.avatar} alt="User avatar" type="profile" />
 
             <DataWrapper>
               <DataGroup>

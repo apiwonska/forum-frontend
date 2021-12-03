@@ -50,9 +50,6 @@ export const Content = styled.div`
   overflow: hidden;
 `;
 
-export const AvatarThumbnail = styled.img`
-  width: 3.5rem;
-  height: 3.5rem;
-  border-radius: 50%;
+export const AvatarThumbnailWrapper = styled.div`
   margin: 1 rem;
 `;
