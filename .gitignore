@@ -11,6 +11,9 @@ media/*
 media/users/*
 !media/users/blank-profile-picture.jpeg
 
+static/
+staticfiles/
+
 sent_emails/
 
 # Backup files # 

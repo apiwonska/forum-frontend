@@ -13,20 +13,18 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 import sys
 import environ
-import dj_database_url
-
 
 env = environ.Env(
     # set casting, default value
     DEBUG=(bool, False),
-    ALLOWED_HOSTS=(str, '')
+    ALLOWED_HOSTS=(str, ""),
 )
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR =  os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 # reading .env file
-env.read_env(os.path.join(BASE_DIR, '.env'))
+env.read_env(os.path.join(BASE_DIR, ".env"))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -35,13 +33,12 @@ env.read_env(os.path.join(BASE_DIR, '.env'))
 SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-
 DEBUG = env("DEBUG")
 
-if env("ALLOWED_HOSTS"):
+if DEBUG == False and env("ALLOWED_HOSTS"):
     ALLOWED_HOSTS = env("ALLOWED_HOSTS").split(",")
 else:
-    ALLOWED_HOSTS =[]
+    ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -81,7 +78,7 @@ ROOT_URLCONF = "forumproject.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": ["templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -95,18 +92,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "forumproject.wsgi.application"
-
-
-# Database
-# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
-# This setting reset DATABASES and use 'DATABASE_URL' by default
-DATABASES={}
-DATABASES['default'] = dj_database_url.config(conn_max_age=600)
-
-TESTING_MODE = "test" in sys.argv
-if TESTING_MODE:
-    DATABASES["default"]["HOST"] = "localhost"
 
 
 # Password validation
@@ -146,8 +131,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = "/static/"
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'staticfiles')
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "build/static")]
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 # Media files
 MEDIA_URL = "/media/"
@@ -168,24 +153,9 @@ REST_FRAMEWORK = {
     "PAGE_SIZE": 5,
 }
 
-# Emails
-if DEBUG:
-    EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
-    EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
-else:
-    # Email configuration for produccion
-    # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-    # EMAIL_HOST_USER = ''
-    # EMAIL_HOST = 'smtp.gmail.com'
-    # EMAIL_PORT = 587
-    # EMAIL_USE_TLS = True
-    # EMAIL_HOST_PASSWORD = ''
-    pass
-
-if TESTING_MODE:
-    EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
-    EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
 
 CORS_ORIGIN_WHITELIST = [
     "http://localhost:3000",
 ]
+
+TESTING_MODE = "test" in sys.argv
