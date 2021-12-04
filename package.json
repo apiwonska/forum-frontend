@@ -35,8 +35,6 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "postbuild": "mkdir -p templates && cp -u build/index.html templates",
-    "build:frontend": "npm run build && npm run postbuild",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint --ext js,jsx ./src",
@@ -53,7 +51,7 @@
   "lint-staged": {
     "./src/*.{js,jsx,ts,tsx}": [
       "npx prettier --write",
-      "eslint src/*.js --fix-dry-run"
+      "eslint src/* --fix-dry-run"
     ],
     "*.{js,jsx}": "eslint --cache --fix"
   },
@@ -80,7 +78,10 @@
     "eslint-plugin-react-hooks": "^2.5.1",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.13",
-    "prettier": "^2.1.1",
-    "react-axe": "^3.5.3"
+    "prettier": "^2.1.1"
+  },
+  "engines": {
+    "node": "14.6.0",
+    "npm": "7.19.0"
   }
 }
