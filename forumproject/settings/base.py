@@ -78,7 +78,7 @@ ROOT_URLCONF = "forumproject.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": ["templates"],
+        "DIRS": ["build"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -153,9 +153,9 @@ REST_FRAMEWORK = {
     "PAGE_SIZE": 5,
 }
 
-
-CORS_ORIGIN_WHITELIST = [
-    "http://localhost:3000",
-]
+if DEBUG:
+    CORS_ORIGIN_WHITELIST = [
+        "http://localhost:3000",
+    ]
 
 TESTING_MODE = "test" in sys.argv
