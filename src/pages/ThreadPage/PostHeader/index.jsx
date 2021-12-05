@@ -10,7 +10,6 @@ import {
   AvatarThumbnailWrapper,
 } from './style';
 
-// TODO: use ImageKit.io
 const PostHeader = ({ post }) => (
   <>
     <AvatarThumbnailWrapper>
@@ -32,7 +31,7 @@ PostHeader.propTypes = {
     user: PropTypes.shape({
       id: PropTypes.number.isRequired,
       username: PropTypes.string.isRequired,
-      avatar: PropTypes.string.isRequired,
+      avatar: PropTypes.oneOfType([PropTypes.string, PropTypes.oneOf([null])]),
     }).isRequired,
     created: PropTypes.string.isRequired,
   }).isRequired,

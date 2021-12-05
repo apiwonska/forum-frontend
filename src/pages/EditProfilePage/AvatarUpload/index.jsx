@@ -53,7 +53,7 @@ const AvatarUpload = ({
 
 AvatarUpload.propTypes = {
   uploadErrors: PropTypes.arrayOf(PropTypes.string),
-  avatarSrc: PropTypes.string.isRequired,
+  avatarSrc: PropTypes.string,
   handleFileSelect: PropTypes.func.isRequired,
   handleFileUpload: PropTypes.func.isRequired,
   selectedFile: PropTypes.instanceOf(File),
@@ -62,6 +62,7 @@ AvatarUpload.propTypes = {
 AvatarUpload.defaultProps = {
   uploadErrors: null,
   selectedFile: null,
+  avatarSrc: null,
 };
 
 export default AvatarUpload;

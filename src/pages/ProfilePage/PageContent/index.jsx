@@ -81,7 +81,7 @@ PageContent.propTypes = {
   user: PropTypes.shape({
     username: PropTypes.string.isRequired,
     email: PropTypes.oneOfType([PropTypes.string, PropTypes.oneOf([null])]),
-    avatar: PropTypes.string.isRequired,
+    avatar: PropTypes.oneOfType([PropTypes.string, PropTypes.oneOf([null])]),
     description: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.oneOf([null]),

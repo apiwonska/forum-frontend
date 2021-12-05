@@ -74,7 +74,7 @@ PageContent.propTypes = {
       username: PropTypes.string,
       email: PropTypes.string,
       description: PropTypes.string,
-      avatar: PropTypes.string.isRequired,
+      avatar: PropTypes.oneOfType([PropTypes.string, PropTypes.oneOf([null])]),
     }).isRequired,
   }).isRequired,
   selectedFile: PropTypes.instanceOf(File),

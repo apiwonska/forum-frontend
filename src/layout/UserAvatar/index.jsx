@@ -13,11 +13,11 @@ const UserAvatar = ({ type, src, alt }) => {
   };
 
   if (type === 'profile') {
-    return <AvatarProfile src={src} alt={alt} onError={onErrorImg} />;
+    return <AvatarProfile src={src || ''} alt={alt} onError={onErrorImg} />;
   }
 
   if (type === 'thumbnail') {
-    return <AvatarThumbnail src={src} alt={alt} onError={onErrorImg} />;
+    return <AvatarThumbnail src={src || ''} alt={alt} onError={onErrorImg} />;
   }
 
   return null;
@@ -25,8 +25,12 @@ const UserAvatar = ({ type, src, alt }) => {
 
 UserAvatar.propTypes = {
   type: PropTypes.oneOf(['profile', 'thumbnail']).isRequired,
-  src: PropTypes.string.isRequired,
+  src: PropTypes.oneOfType([PropTypes.string, PropTypes.oneOf([null])]),
   alt: PropTypes.string.isRequired,
+};
+
+UserAvatar.defaultProps = {
+  src: null,
 };
 
 export default UserAvatar;
