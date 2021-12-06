@@ -1,4 +1,4 @@
-import forum from 'apis/forum';
+import forumAPI from 'apis/forumAPI';
 import {
   FETCH_POSTS_BY_THREAD_PENDING,
   FETCH_POSTS_BY_THREAD_FULFILLED,
@@ -21,7 +21,7 @@ export const fetchPostsByThread =
       type: FETCH_POSTS_BY_THREAD_PENDING,
     });
     try {
-      const response = await forum().get(
+      const response = await forumAPI.get(
         `/api/posts/?thread=${threadId}&limit=${itemsPerPage}&offset=${offset}`
       );
       dispatch({
@@ -43,7 +43,7 @@ export const fetchPostsByUser =
       type: FETCH_POSTS_BY_USER_PENDING,
     });
     try {
-      const response = await forum().get(
+      const response = await forumAPI.get(
         `/api/posts/?user=${userId}&ordering=-created&limit=${itemsPerPage}&offset=${offset}`
       );
       dispatch({
@@ -60,7 +60,7 @@ export const fetchPostsByUser =
 
 export const createPost = (data) => async (dispatch) => {
   try {
-    const response = await forum().post('/api/posts/', data);
+    const response = await forumAPI.post('/api/posts/', data);
     dispatch({
       type: CREATE_POST_FULFILLED,
       payload: response.data,
@@ -75,7 +75,7 @@ export const createPost = (data) => async (dispatch) => {
 
 export const updatePost = (data, postId) => async (dispatch) => {
   try {
-    const response = await forum().patch(`/api/posts/${postId}/`, data);
+    const response = await forumAPI.patch(`/api/posts/${postId}/`, data);
     dispatch({
       type: UPDATE_POST_FULFILLED,
       payload: response.data,
@@ -90,7 +90,7 @@ export const updatePost = (data, postId) => async (dispatch) => {
 
 export const deletePost = (postId) => async (dispatch) => {
   try {
-    await forum().delete(`/api/posts/${postId}/`);
+    await forumAPI.delete(`/api/posts/${postId}/`);
     dispatch({
       type: DELETE_POST_FULFILLED,
       payload: postId,

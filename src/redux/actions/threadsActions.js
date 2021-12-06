@@ -1,5 +1,5 @@
 import history from 'Routing/history';
-import forum from 'apis/forum';
+import forumAPI from 'apis/forumAPI';
 import {
   FETCH_THREADS_BY_CATEGORY_PENDING,
   FETCH_THREADS_BY_CATEGORY_FULFILLED,
@@ -18,7 +18,7 @@ export const fetchThreadsByCategory =
       type: FETCH_THREADS_BY_CATEGORY_PENDING,
     });
     try {
-      const response = await forum().get(
+      const response = await forumAPI.get(
         `/api/threads/?category=${categoryId}&limit=${itemsPerPage}&offset=${offset}`
       );
       dispatch({
@@ -38,7 +38,7 @@ export const fetchThread = (threadId) => async (dispatch) => {
     type: FETCH_THREAD_PENDING,
   });
   try {
-    const response = await forum().get(`/api/threads/${threadId}`);
+    const response = await forumAPI.get(`/api/threads/${threadId}`);
     dispatch({
       type: FETCH_THREAD_FULFILLED,
       payload: response.data,
@@ -53,7 +53,7 @@ export const fetchThread = (threadId) => async (dispatch) => {
 
 export const createThread = (data) => async (dispatch) => {
   try {
-    const response = await forum().post('/api/threads/', data);
+    const response = await forumAPI.post('/api/threads/', data);
     const { id } = response.data;
     history.push(`/threads/${id}`);
     dispatch({

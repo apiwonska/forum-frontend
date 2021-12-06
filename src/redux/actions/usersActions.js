@@ -1,4 +1,4 @@
-import forum from 'apis/forum';
+import forumAPI from 'apis/forumAPI';
 import {
   FETCH_USER_PENDING,
   FETCH_USER_FULFILLED,
@@ -16,7 +16,7 @@ export const fetchUser = (userId) => async (dispatch) => {
     type: FETCH_USER_PENDING,
   });
   try {
-    const response = await forum().get(`/api/users/${userId}`);
+    const response = await forumAPI.get(`/api/users/${userId}`);
     dispatch({
       type: FETCH_USER_FULFILLED,
       payload: response.data,
@@ -34,7 +34,7 @@ export const updateUser = (data, userId) => async (dispatch) => {
     type: UPDATE_USER_PENDING,
   });
   try {
-    const response = await forum().patch(`/api/users/${userId}/`, data);
+    const response = await forumAPI.patch(`/api/users/${userId}/`, data);
     dispatch({
       type: UPDATE_USER_FULFILLED,
       payload: response.data,
@@ -52,7 +52,7 @@ export const uploadAvatar = (formData, userId) => async (dispatch) => {
     type: UPLOAD_AVATAR_PENDING,
   });
   try {
-    const instance = forum();
+    const instance = forumAPI;
     instance.defaults.headers.post['Content-Type'] = 'multipart/form-data';
     const response = await instance.patch(`/api/users/${userId}/`, formData);
     dispatch({

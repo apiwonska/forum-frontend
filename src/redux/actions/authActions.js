@@ -1,7 +1,6 @@
-import axios from 'axios';
 import Cookies from 'universal-cookie';
 
-import forum from 'apis/forum';
+import forumAPI from 'apis/forumAPI';
 import history from 'Routing/history';
 import {
   REGISTER_USER_PENDING,
@@ -22,12 +21,15 @@ import {
 
 const cookies = new Cookies();
 
+const domain = window.location.hostname;
+
 const setCookie = async (name, value) => {
   const cookieExpirationDate = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000);
   await cookies.set(name, value, {
-    domain: 'localhost',
+    domain,
     path: '/',
     expires: cookieExpirationDate,
+    sameSite: 'lax',
   });
 };
 
@@ -48,7 +50,7 @@ export const register = (formProps) => async (dispatch) => {
     type: REGISTER_USER_PENDING,
   });
   try {
-    const response = await axios.post(`/api/registration/`, formProps);
+    const response = await forumAPI.post(`/api/registration/`, formProps);
     await setAuthCookies(response.data);
     history.push('/');
     dispatch({
@@ -68,7 +70,7 @@ export const logIn = (formProps) => async (dispatch) => {
     type: LOGIN_USER_PENDING,
   });
   try {
-    const response = await axios.post(`/api/token-auth/`, formProps);
+    const response = await forumAPI.post(`/api/token-auth/`, formProps);
     await setAuthCookies(response.data);
     history.push('/');
     dispatch({
@@ -85,11 +87,11 @@ export const logIn = (formProps) => async (dispatch) => {
 
 export const logOut = () => async (dispatch) => {
   await cookies.remove('Authorization', {
-    domain: 'localhost',
+    domain,
     path: '/',
   });
   await cookies.remove('User', {
-    domain: 'localhost',
+    domain,
     path: '/',
   });
   dispatch({
@@ -99,7 +101,7 @@ export const logOut = () => async (dispatch) => {
 
 export const resetPassword = (formProps) => async (dispatch) => {
   try {
-    const response = await axios.post(`/api/password-reset/`, formProps);
+    const response = await forumAPI.post(`/api/password-reset/`, formProps);
     dispatch({
       type: RESET_PASSWORD_FULFILLED,
       payload: response.data,
@@ -114,7 +116,7 @@ export const resetPassword = (formProps) => async (dispatch) => {
 
 export const confirmPasswordReset = (data) => async (dispatch) => {
   try {
-    const response = await axios.post(`/api/password-reset/confirm/`, data);
+    const response = await forumAPI.post(`/api/password-reset/confirm/`, data);
     dispatch({
       type: RESET_PASSWORD_CONFIRM_FULFILLED,
       payload: response.data,
@@ -132,7 +134,7 @@ export const changePassword = (data) => async (dispatch) => {
     type: CHANGE_PASSWORD_PENDING,
   });
   try {
-    const response = await forum().patch(`/api/change-password/`, data);
+    const response = await forumAPI.patch(`/api/change-password/`, data);
     await setAuthCookies(response.data);
     dispatch({
       type: CHANGE_PASSWORD_FULFILLED,
