@@ -11,6 +11,7 @@ user: quest
 password: 2VggV22v
 
 ## Main features:
+- Create, read, update, delete posts
 - User registration and authentication
 - Password recovery
 - Django admin panel
