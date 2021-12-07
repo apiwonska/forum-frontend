@@ -13,7 +13,11 @@ export const fetchCategory = (categoryId) => async (dispatch) => {
     type: FETCH_CATEGORY_PENDING,
   });
   try {
-    const response = await forumAPI.get(`/api/categories/${categoryId}`);
+    const response = await forumAPI.get(`/api/categories/${categoryId}`, {
+      'axios-retry': {
+        retries: 3,
+      },
+    });
     dispatch({
       type: FETCH_CATEGORY_FULFILLED,
       payload: response.data,
@@ -31,7 +35,7 @@ export const fetchCategories = () => async (dispatch) => {
     type: FETCH_CATEGORIES_PENDING,
   });
   try {
-    const response = await forumAPI.get(`/api/categories`);
+    const response = await forumAPI.get(`/api/categories/`);
     dispatch({
       type: FETCH_CATEGORIES_FULFILLED,
       payload: response.data,

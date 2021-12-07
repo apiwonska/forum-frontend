@@ -1,4 +1,5 @@
 import axios from 'axios';
+import axiosRetry from 'axios-retry';
 import store from '../redux/store';
 
 const instance = axios.create({
@@ -14,5 +15,7 @@ if (token) {
 }
 
 instance.defaults.headers.post['Content-Type'] = 'application/json';
+
+axiosRetry(instance, { retries: 3, retryDelay: 1000 });
 
 export default instance;
