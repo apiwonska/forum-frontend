@@ -4,7 +4,6 @@ import store from '../redux/store';
 
 const instance = axios.create({
   baseURL: 'https://forum-backend-ap.herokuapp.com',
-  // baseURL: 'http://localhost:8000',
   timeout: 1000,
 });
 
