@@ -6,12 +6,16 @@ const Ol = styled.ol`
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  margin: 1rem 2rem 1rem 0;
-  padding-left: 0;
+  margin: 1rem 0 2rem;
+  padding: 0;
   font-size: 1.4rem;
   list-style: none;
-  overflow-wrap: anywhere;
-  word-break: break-all;
+  overflow-wrap: word-break;
+  line-height: 2;
+`;
+
+export const Li = styled.li`
+  margin: 0 1rem;
 `;
 
 const Breadcrumb = ({ children }) => {

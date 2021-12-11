@@ -2,13 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link as Link_ } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { Li } from './Breadcrumb';
 
 const Link = styled(Link_)`
   position: relative;
   color: #2f3941;
-  margin: 1rem 2.3rem 1rem 0rem;
-  padding: 0.4rem;
-  border-radius: 0.4rem;
+  padding: 0.2rem;
+  border-radius: 0.3rem;
   text-decoration: none;
 
   &:visited {
@@ -21,11 +21,11 @@ const Link = styled(Link_)`
 
   &::after {
     position: absolute;
-    top: 0.5rem;
-    right: -1.2rem;
+    top: 50%;
+    right: -1rem;
     content: '';
     display: inline-block;
-    transform: rotate(15deg);
+    transform: translateY(-50%) rotate(15deg);
     height: 1.6rem;
     border-right: 0.1rem solid #2f3941;
   }
@@ -34,9 +34,9 @@ const Link = styled(Link_)`
 const Anchor = ({ href, children }) => {
   return (
     <>
-      <li>
+      <Li>
         <Link to={href}>{children}</Link>
-      </li>
+      </Li>
     </>
   );
 };

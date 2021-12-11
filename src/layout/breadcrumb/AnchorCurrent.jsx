@@ -2,15 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link as Link_ } from 'react-router-dom';
 import PropTypes from 'prop-types';
-
 import theme from 'layout/theme';
+import { Li } from './Breadcrumb';
 
 const Link = styled(Link_)`
   position: relative;
   color: ${theme.colors.black};
   font-weight: 600;
-  margin: 1rem 2rem 1rem 0rem;
-  padding: 0.4rem;
+  padding: 0.2rem 1rem;
   border-radius: 0.4rem;
   text-decoration: none;
   background-color: rgba(31, 115, 183, 0.08);
@@ -23,11 +22,11 @@ const Link = styled(Link_)`
 const AnchorCurrent = ({ href, children }) => {
   return (
     <>
-      <li>
+      <Li>
         <Link to={href} aria-current="page">
           {children}
         </Link>
-      </li>
+      </Li>
     </>
   );
 };
