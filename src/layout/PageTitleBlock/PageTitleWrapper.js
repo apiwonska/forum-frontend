@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import theme from 'layout/theme';
 
-export default styled.div`
+const PageTitleWrapper = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
@@ -10,7 +10,9 @@ export default styled.div`
   background-color: ${theme.colors.secondary};
   box-shadow: 0 0.3rem 1rem rgba(0, 0, 0, 0.15);
   margin-bottom: 3rem;
-  overflow-wrap: anywhere;
-  word-break: break-all;
+  overflow-wrap: break-word;
   overflow: hidden;
 `;
+PageTitleWrapper.displayName = 'PageTitleWrapper';
+
+export default PageTitleWrapper;

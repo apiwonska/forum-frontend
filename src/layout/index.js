@@ -34,7 +34,7 @@ import MenuDropdown from './MenuDropdown';
 
 import PageTitleBlock from './PageTitleBlock';
 import PageTitleWrapper from './PageTitleBlock/PageTitleWrapper';
-import PageTitleText from './PageTitleBlock/PageTitleText';
+import PageTitle from './PageTitleBlock/PageTitle';
 
 import Pagination from './pagination/Pagination';
 import PaginationWrapper from './pagination/PaginationWrapper';
@@ -76,7 +76,7 @@ export {
   ModalParagraph,
   MenuDropdown,
   PageTitleBlock,
-  PageTitleText,
+  PageTitle,
   PageTitleWrapper,
   PageWrapper,
   Pagination,

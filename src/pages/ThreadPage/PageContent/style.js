@@ -1,16 +1,11 @@
 import styled from 'styled-components';
 
-import { theme, Button as Button_ } from 'layout';
+import { Button as Button_, PageTitle } from 'layout';
 
-export const PageTitleText = styled.h1`
-  flex-grow: 1;
-  margin: 1.5rem;
-  text-transform: capitalize;
-  color: ${theme.colors.white};
-  text-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.3);
-  text-align: center;
+export const PageTitleThread = styled(PageTitle)`
   font-size: 2rem;
 `;
+PageTitleThread.displayName = 'PageTitleThread';
 
 export const Button = styled(Button_)`
   width: 100%;
@@ -19,9 +14,11 @@ export const Button = styled(Button_)`
     width: auto;
   }
 `;
+Button.displayName = 'Button';
 
 export const ButtonWrapper = styled.div`
   display: flex;
   margin: 2rem 0 2rem;
   justify-content: flex-end;
 `;
+ButtonWrapper.displayName = 'ButtonWrapper';

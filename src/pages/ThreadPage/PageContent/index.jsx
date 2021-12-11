@@ -12,7 +12,7 @@ import {
   Pagination,
   PaginationWrapper,
 } from 'layout';
-import { Button, PageTitleText, ButtonWrapper } from './style';
+import { Button, PageTitleThread, ButtonWrapper } from './style';
 import CreatePostForm from '../CreatePostForm';
 import ThreadSubject from '../ThreadSubject';
 import PostHeader from '../PostHeader';
@@ -52,7 +52,7 @@ const PageContent = ({
 
       <PageWrapper>
         <PageTitleWrapper>
-          <PageTitleText>{thread.title}</PageTitleText>
+          <PageTitleThread>{thread.title}</PageTitleThread>
         </PageTitleWrapper>
 
         <ContentWrapper>
